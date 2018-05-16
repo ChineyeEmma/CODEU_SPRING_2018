@@ -55,6 +55,10 @@
           What needs do they have? How could you help? Think about technical
           requirements, privacy concerns, and accessibility and
           internationalization.</li>
+              <li><strong>Customization:</strong> Think about a group you care about.
+          What needs do they have? How could you help? Think about technical
+          requirements, privacy concerns, and accessibility and
+          internationalization.</li>
       </ul>
 
       <p>
