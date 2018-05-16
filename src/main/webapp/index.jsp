@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Team4  Chat App</title>
+  <title>Team4 Chat App</title>
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
