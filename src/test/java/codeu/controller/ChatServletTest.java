@@ -152,6 +152,7 @@ public class ChatServletTest {
     Mockito.verify(mockResponse).sendRedirect("/conversations");
   }
 
+
   @Test
   public void testDoPost_StoresMessage() throws IOException, ServletException {
     Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
