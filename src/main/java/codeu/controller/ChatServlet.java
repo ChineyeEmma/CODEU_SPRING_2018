@@ -169,7 +169,7 @@ public class ChatServlet extends HttpServlet {
 	 */
 	public static String clean(String messageToClean, Whitelist whitelist) {
 		Document dirty = Parser.parseBodyFragment(messageToClean, "");
-		Cleaner cleaner = new Cleaner(Whitelist.simpleText());
+		Cleaner cleaner = new Cleaner(Whitelist.simpleText().addTags("strike", "code"));
 		Document clean = cleaner.clean(dirty);
 		clean.outputSettings().prettyPrint(false);
 		return clean.body().html();
