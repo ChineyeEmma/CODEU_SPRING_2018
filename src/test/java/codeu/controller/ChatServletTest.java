@@ -201,9 +201,71 @@ public class ChatServletTest {
 
     ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
     Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
-    Assert.assertEquals(
-        "Contains html and  content.", messageArgumentCaptor.getValue().getContent());
+    Assert.assertEquals("Contains <b>html</b> and  content.", messageArgumentCaptor.getValue().getContent());
 
     Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
   }
+
+
+/*
+CHINEYE TESTING FOR PROTOTYPE OF CLEANING HTML #1
+*/
+@Test
+public void testDoPost_ProtoOne() throws IOException, ServletException{
+    Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
+    Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
+
+    User fakeUser = new User(UUID.randomUUID(), "test_username", "test_username", Instant.now());
+    Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
+
+    Conversation fakeConversation =
+        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", Instant.now());
+    Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
+        .thenReturn(fakeConversation);
+
+Mockito.when(mockRequest.getParameter("message"))
+        .thenReturn("Testing <em>some</em> emphasis");
+
+
+    chatServlet.doPost(mockRequest, mockResponse);
+
+    ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
+    Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
+
+    Assert.assertEquals("Testing <em>some</em> emphasis", messageArgumentCaptor.getValue().getContent());
+
+    Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
+
+}
+
+/*
+CHINEYE TESTING FOR PROTOTYPE OF CLEANING HTML #1
+*/
+@Test
+public void testDoPost_ProtoTwo() throws IOException, ServletException{
+    Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
+    Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
+
+    User fakeUser = new User(UUID.randomUUID(), "test_username", "test_username", Instant.now());
+    Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
+
+    Conversation fakeConversation =
+        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", Instant.now());
+    Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
+        .thenReturn(fakeConversation);
+
+Mockito.when(mockRequest.getParameter("message"))
+        .thenReturn("Testing <i>words</i> that <script>OH NO JAVASCRIPT</script>like to <i>lean</i> and be <strong>buff</strong>");
+
+
+    chatServlet.doPost(mockRequest, mockResponse);
+
+    ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
+    Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
+
+    Assert.assertEquals("Testing <i>words</i> that like to <i>lean</i> and be <strong>buff</strong>", messageArgumentCaptor.getValue().getContent());
+
+    Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
+
+}
 }
