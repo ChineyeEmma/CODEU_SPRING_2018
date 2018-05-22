@@ -149,7 +149,7 @@ public class ChatServlet extends HttpServlet {
     /*this allows the user to enter a limited amount of HTML tags
     to style thier text.*/
 
-  	String cleanedMessageContent = clean(messageContent, Whitelist.simpleText());
+  	String cleanedMessageContent = clean(messageContent, Whitelist.simpleText().addTags("strike", "code"));
 
     Message message =
         new Message(
@@ -174,7 +174,7 @@ public class ChatServlet extends HttpServlet {
    */
   private static String clean(String messageToClean, Whitelist whitelist) {
   	Document dirty = Parser.parseBodyFragment(messageToClean, "");
-  	Cleaner cleaner = new Cleaner(whitelist.addTags("strike", "code"));
+  	Cleaner cleaner = new Cleaner(whitelist);
   	Document clean = cleaner.clean(dirty);
   	clean.outputSettings().prettyPrint(false);
   	return clean.body().html();
