@@ -146,7 +146,9 @@ public class ChatServlet extends HttpServlet {
 		//original raw message
 		String messageContent = request.getParameter("message");
 
-		// this removes any HTML from the message content
+    /*this allows the user to enter a limited amount of HTML tags
+    to style thier text.*/
+
 		String cleanedMessageContent = clean(messageContent, Whitelist.simpleText());
 
 		Message message = new Message(UUID.randomUUID(), conversation.getId(), user.getId(), cleanedMessageContent,
@@ -159,17 +161,15 @@ public class ChatServlet extends HttpServlet {
 	}
 
 	/*
-	 * CHINEYE NOTE:
-	 * 
 	 * method to replace the Jsoup method that cleans the 
 	 * text of any invalid HTML tags.
 	 * 
 	 * the method returns a String that is cleaned
 	 * with no "auto" newline character concatenated
 	 */
-	public static String clean(String messageToClean, Whitelist whitelist) {
+	private static String clean(String messageToClean, Whitelist whitelist) {
 		Document dirty = Parser.parseBodyFragment(messageToClean, "");
-		Cleaner cleaner = new Cleaner(Whitelist.simpleText().addTags("strike", "code"));
+		Cleaner cleaner = new Cleaner(whitelist.addTags("strike", "code"));
 		Document clean = cleaner.clean(dirty);
 		clean.outputSettings().prettyPrint(false);
 		return clean.body().html();
