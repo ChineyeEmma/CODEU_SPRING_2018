@@ -50,7 +50,7 @@
       </ul>
 
       <p>
-        This website that you are currently on is our teams summer project. We were given the task to modify and enhance a very basic chat app. Each of us were given a specific task to complete and we as a team had to work together in order to make sure we created a functional app that we are proud of.
+        This website that you are currently on is our teams summer project. We were given the task to modify and enhance a very basic chat app. Each of us were given a specific task to complete and we as a team had to work together in order to make sure we created a functional app that we are proud of .
       </p>
     </div>
   </div>
