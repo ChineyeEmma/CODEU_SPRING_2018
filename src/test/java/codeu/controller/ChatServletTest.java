@@ -30,6 +30,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.jsoup.nodes.Document;
+import org.jsoup.parser.Parser;
+import org.jsoup.safety.Cleaner;
+import org.jsoup.safety.Whitelist;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -98,7 +103,6 @@ public class ChatServletTest {
     Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
   }
 
-
   @Test
   public void testDoGet_badConversation() throws IOException, ServletException {
     Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/bad_conversation");
@@ -153,6 +157,7 @@ public class ChatServletTest {
     Mockito.verify(mockResponse).sendRedirect("/conversations");
   }
 
+
   @Test
   public void testDoPost_StoresMessage() throws IOException, ServletException {
     Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
@@ -202,67 +207,144 @@ public class ChatServletTest {
 
     ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
     Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
-    Assert.assertEquals(
-        "Contains html and  content.", messageArgumentCaptor.getValue().getContent());
+    Assert.assertEquals("Contains <b>html</b> and  content.", messageArgumentCaptor.getValue().getContent());
 
     Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
   }
 
+
+/*
+CHINEYE TESTING FOR PROTOTYPE OF CLEANING HTML #1
+*/
+@Test
+public void testDoPost_ProtoOne() throws IOException, ServletException{
+    Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
+    Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
+
+    User fakeUser = new User(UUID.randomUUID(), "test_username", "test_username", Instant.now());
+    Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
+
+    Conversation fakeConversation =
+        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", Instant.now());
+    Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
+        .thenReturn(fakeConversation);
+
+    Mockito.when(mockRequest.getParameter("message"))
+        .thenReturn("Testing <em>some</em> emphasis");
+
+
+    chatServlet.doPost(mockRequest, mockResponse);
+
+    ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
+    Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
+
+    Assert.assertEquals("Testing <em>some</em> emphasis", messageArgumentCaptor.getValue().getContent());
+
+    Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
+
+}
+
+/*
+CHINEYE TESTING FOR PROTOTYPE OF CLEANING HTML #1
+*/
+@Test
+public void testDoPost_ProtoTwo() throws IOException, ServletException{
+    Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
+    Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
+
+    User fakeUser = new User(UUID.randomUUID(), "test_username", "test_username", Instant.now());
+    Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
+
+    Conversation fakeConversation =
+        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation", Instant.now());
+    Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
+        .thenReturn(fakeConversation);
+
+    Mockito.when(mockRequest.getParameter("message"))
+        .thenReturn("Testing <i>words</i> that <script>OH NO JAVASCRIPT</script>like to <i>lean</i> and be <strong>buff</strong>");
+
+
+    chatServlet.doPost(mockRequest, mockResponse);
+
+    ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
+    Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
+
+    Assert.assertEquals("Testing <i>words</i> that like to <i>lean</i> and be <strong>buff</strong>", messageArgumentCaptor.getValue().getContent());
+
+    Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
+
+}
+
+	/*
+	 * test all tags included in the Whitelist
+	 * Current allowed tags: b, em, i , u, strong, strike
+	 */
+	public void testAllTags(){
+
+		String [][] userInput = testHtmlPrep();
+		
+		for (int i = 0; i < userInput.length; i++) {
+			String rawHTML = userInput[i][0];
+			String expected = userInput[i][1];
+			String cleanedOutput = clean(rawHTML, Whitelist.simpleText());
+			
+			//compare the expected and actual output
+			Assert.assertEquals(expected, cleanedOutput);
+		}
+	}
+	
+	  /*
+	   * method to prep the array of test cases
+	   */
+    private String [][] testHtmlPrep(){
+	    final int numTagsAllowed = 6;
+	    String [][] userInputs = new String [numTagsAllowed + 1][1];
+	    //rawHTML
+	    userInputs[0][0] = "testing <em>text with emphasis</em> and stuff";
+	    //expectedHTML
+	    userInputs[0][1] = "testing <em>text with emphasis</em> and stuff";
+
+	    //bold tags w/ Javascript
+	    userInputs[1][0] = "testing <b>text with bold</b> and" 
+	                       + "<script>OH NO JS</script> stuff";
+	    userInputs[1][1] = "testing <b>text with bold</b> and" 
+	    + " stuff";
+
+	    userInputs[2][0] = "testing <i>italics</i> and stuff" +
+	                        "<script>more javascript at the end of the String</script>";
+	    userInputs[2][1] = "testing <i>italics</i> and stuff";
+
+	    userInputs[3][0] = "<strong>testing strong at the beginning</strong>" +
+	                        "of the String";
+	    userInputs[3][1] = "<strong>testing strong at the beginning</strong>" +
+	                       "of the String";
+
+	    userInputs[4][0] = "<u>underlined test</u>";
+	    userInputs[4][1] = "<u>underlined test</u>";
+
+	    userInputs[5][0] = "testing <strike>underlined test</strike>";
+	    userInputs[5][1] = "testing <strike>underlined test</strike>";
+
+	    //edge case
+	    userInputs[6][0] = "<script>just javascript this should output nothing</script>";
+	    userInputs[6][1] = "";
+
+	  return userInputs;
+
+	 }
+
   /*
-   * Testing all HTML tags included in my Whitelist
+   * method to replace the Jsoup method that cleans the 
+   * text of any invalid HTML tags.
+   * 
+   * the method returns a String that is cleaned
+   * with no "auto" newline character concatenated
    */
-  @Test
-  public void testDoPost_ProtoOne(String rawHTML, String expectedHTML) throws IOException, ServletException {
-  	Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
-  	Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
-
-  	User fakeUser = new User(UUID.randomUUID(), "test_username", "test_username", Instant.now());
-  	Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
-
-  	Conversation fakeConversation = new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation",
-  			Instant.now());
-  	Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation")).thenReturn(fakeConversation);
-
-  	Mockito.when(mockRequest.getParameter("message")).thenReturn("Testing <em>some</em> emphasis");
-
-  	chatServlet.doPost(mockRequest, mockResponse);
-
-  	ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
-  	Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
-
-  	Assert.assertEquals("Testing <em>some</em> emphasis", messageArgumentCaptor.getValue().getContent());
-
-  	Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
-
-  }
-
-  /*
-   * CHINEYE TESTING FOR PROTOTYPE OF CLEANING HTML #1
-   */
-  @Test
-  public void testDoPost_ProtoTwo() throws IOException, ServletException {
-  	Mockito.when(mockRequest.getRequestURI()).thenReturn("/chat/test_conversation");
-  	Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
-
-  	User fakeUser = new User(UUID.randomUUID(), "test_username", "test_username", Instant.now());
-  	Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
-
-  	Conversation fakeConversation = new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_conversation",
-  			Instant.now());
-  	Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation")).thenReturn(fakeConversation);
-
-  	Mockito.when(mockRequest.getParameter("message")).thenReturn(
-  			"Testing <i>words</i> that <script>OH NO JAVASCRIPT</script>like to <i>lean</i> and be <strong>buff</strong>");
-
-  	chatServlet.doPost(mockRequest, mockResponse);
-
-  	ArgumentCaptor<Message> messageArgumentCaptor = ArgumentCaptor.forClass(Message.class);
-  	Mockito.verify(mockMessageStore).addMessage(messageArgumentCaptor.capture());
-
-  	Assert.assertEquals("Testing <i>words</i> that like to <i>lean</i> and be <strong>buff</strong>",
-  			messageArgumentCaptor.getValue().getContent());
-
-  	Mockito.verify(mockResponse).sendRedirect("/chat/test_conversation");
-
+  private static String clean(String messageToClean, Whitelist whitelist) {
+    Document dirty = Parser.parseBodyFragment(messageToClean, "");
+    Cleaner cleaner = new Cleaner(whitelist.addTags("strike", "code"));
+    Document clean = cleaner.clean(dirty);
+    clean.outputSettings().prettyPrint(false);
+    return clean.body().html();
   }
 }
