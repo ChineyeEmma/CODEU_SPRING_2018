@@ -286,7 +286,7 @@ public void testDoPost_ProtoTwo() throws IOException, ServletException{
 		for (int i = 0; i < userInput.length; i++) {
 			String rawHTML = userInput[i][0];
 			String expected = userInput[i][1];
-			String cleanedOutput = clean(rawHTML, Whitelist.simpleText());
+			String cleanedOutput = ChatServlet.clean(rawHTML, Whitelist.simpleText());
 			
 			//compare the expected and actual output
 			Assert.assertEquals(expected, cleanedOutput);
@@ -332,19 +332,4 @@ public void testDoPost_ProtoTwo() throws IOException, ServletException{
 	  return userInputs;
 
 	 }
-
-  /*
-   * method to replace the Jsoup method that cleans the 
-   * text of any invalid HTML tags.
-   * 
-   * the method returns a String that is cleaned
-   * with no "auto" newline character concatenated
-   */
-  private static String clean(String messageToClean, Whitelist whitelist) {
-    Document dirty = Parser.parseBodyFragment(messageToClean, "");
-    Cleaner cleaner = new Cleaner(whitelist.addTags("strike", "code"));
-    Document clean = cleaner.clean(dirty);
-    clean.outputSettings().prettyPrint(false);
-    return clean.body().html();
-  }
 }
