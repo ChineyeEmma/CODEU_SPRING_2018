@@ -172,7 +172,7 @@ public class ChatServlet extends HttpServlet {
    * the method returns a String that is cleaned
    * with no "auto" newline character concatenated
    */
-  private static String clean(String messageToClean, Whitelist whitelist) {
+  public static String clean(String messageToClean, Whitelist whitelist) {
   	Document dirty = Parser.parseBodyFragment(messageToClean, "");
   	Cleaner cleaner = new Cleaner(whitelist);
   	Document clean = cleaner.clean(dirty);
