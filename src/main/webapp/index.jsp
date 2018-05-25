@@ -12,17 +12,16 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
---%>
+--%>                                                                                                    
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CodeU Chat App 2018</title>
+  <title>Team4 Chat App</title>
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-
   <nav>
-    <a id="navTitle" href="/">CodeU Chat App 2018</a>
+    <a id="navTitle" href="/">Team4 Chat App</a>
     <a href="/conversations">Conversations</a>
     <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
@@ -36,7 +35,7 @@
     <div
       style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
-      <h1>CodeU Chat App</h1>
+      <h1>Team4 Chat App</h1>
       <h2>Welcome!</h2>
 
       <ul>
