@@ -29,7 +29,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
+import org.jsoup.safety.Cleaner;
 import org.jsoup.safety.Whitelist;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
 
 /** Servlet class responsible for the chat page. */
 public class ChatServlet extends HttpServlet {
@@ -43,14 +47,14 @@ public class ChatServlet extends HttpServlet {
   /** Store class that gives access to Users. */
   private UserStore userStore;
 
-  /** Set up state for handling chat requests. */
-  @Override
-  public void init() throws ServletException {
-    super.init();
-    setConversationStore(ConversationStore.getInstance());
-    setMessageStore(MessageStore.getInstance());
-    setUserStore(UserStore.getInstance());
-  }
+    /** Set up state for handling chat requests. */
+    @Override
+    public void init() throws ServletException {
+      super.init();
+      setConversationStore(ConversationStore.getInstance());
+      setMessageStore(MessageStore.getInstance());
+      setUserStore(UserStore.getInstance());
+    }
 
   /**
    * Sets the ConversationStore used by this servlet. This function provides a common setup method
@@ -105,27 +109,28 @@ public class ChatServlet extends HttpServlet {
   }
 
   /**
-   * This function fires when a user submits the form on the chat page. It gets the logged-in
-   * username from the session, the conversation title from the URL, and the chat message from the
-   * submitted form data. It creates a new Message from that data, adds it to the model, and then
-   * redirects back to the chat page.
-   */
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws IOException, ServletException {
+    * This function fires when a user submits the form on the chat page. It gets
+    * the logged-in username from the session, the conversation title from the URL,
+    * and the chat message from the submitted form data. It creates a new Message
+    * from that data, adds it to the model, and then redirects back to the chat
+    * page.
+    */
+    @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) 
+        throws IOException, ServletException {
 
-    String username = (String) request.getSession().getAttribute("user");
-    if (username == null) {
-      // user is not logged in, don't let them add a message
-      response.sendRedirect("/login");
-      return;
-    }
+      String username = (String) request.getSession().getAttribute("user");
+      if (username == null) {
+    	  // user is not logged in, don't let them add a message
+    	 response.sendRedirect("/login");
+    	 return;
+      }
 
     User user = userStore.getUser(username);
     if (user == null) {
-      // user was not found, don't let them add a message
-      response.sendRedirect("/login");
-      return;
+    	// user was not found, don't let them add a message
+    	response.sendRedirect("/login");
+    	return;
     }
 
     String requestUrl = request.getRequestURI();
@@ -133,15 +138,18 @@ public class ChatServlet extends HttpServlet {
 
     Conversation conversation = conversationStore.getConversationWithTitle(conversationTitle);
     if (conversation == null) {
-      // couldn't find conversation, redirect to conversation list
-      response.sendRedirect("/conversations");
-      return;
+    	// couldn't find conversation, redirect to conversation list
+    	response.sendRedirect("/conversations");
+    	return;
     }
 
-    String messageContent = request.getParameter("message");
+    //original raw message
+  	String messageContent = request.getParameter("message");
 
-    // this removes any HTML from the message content
-    String cleanedMessageContent = Jsoup.clean(messageContent, Whitelist.none());
+    /*this allows the user to enter a limited amount of HTML tags
+    to style thier text.*/
+
+  	String cleanedMessageContent = clean(messageContent, Whitelist.simpleText().addTags("strike", "code"));
 
     Message message =
         new Message(
@@ -156,4 +164,20 @@ public class ChatServlet extends HttpServlet {
     // redirect to a GET request
     response.sendRedirect("/chat/" + conversationTitle);
   }
+
+  /*
+   * method to replace the Jsoup method that cleans the 
+   * text of any invalid HTML tags.
+   * 
+   * the method returns a String that is cleaned
+   * with no "auto" newline character concatenated
+   */
+  public static String clean(String messageToClean, Whitelist whitelist) {
+  	Document dirty = Parser.parseBodyFragment(messageToClean, "");
+  	Cleaner cleaner = new Cleaner(whitelist);
+  	Document clean = cleaner.clean(dirty);
+  	clean.outputSettings().prettyPrint(false);
+  	return clean.body().html();
+  }
+
 }

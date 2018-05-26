@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-
   <nav>
     <a id="navTitle" href="/">Team4 Chat App</a>
     <a href="/conversations">Conversations</a>
