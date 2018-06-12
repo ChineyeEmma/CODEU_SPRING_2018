@@ -12,42 +12,34 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
---%>                                                                                                    
+--%>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Team4 Chat App</title>
+  <title>Admin page</title>
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 
   <nav>
-    <a id="navTitle" href="/">Team4 Chat App</a>
+    <a id="navTitle" href="/">Admin Page</a>
     <a href="/conversations">Conversations</a>
     <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
     <% } else{ %>
       <a href="/login">Login</a>
     <% } %>
-    <a href="/about.jsp">About</a>
+    <a href="/admin.jsp">Admin</a>
   </nav>
 
+
+</ul>
   <div id="container">
     <div
       style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
-      <h1>Team4 Chat App</h1>
-      <h2>Welcome!</h2>
-
-      <ul>
-        <li><a href="/login">Login</a> to get started.</li>
-        <li>Go to the <a href="/conversations">conversations</a> page to
-            create or join a conversation.</li>
-        <li>View the <a href="/about.jsp">about</a> page to learn more about the
-            project.</li>
-            <li>login to the <a href="/adminlogin">Administrative login</a> to view the administrative page</li>
-            
-      </ul>
+      <h1>Here is the administrative page </h1>
+   
     </div>
   </div>
 </body>
