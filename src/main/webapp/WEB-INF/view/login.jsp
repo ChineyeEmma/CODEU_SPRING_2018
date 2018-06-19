@@ -49,6 +49,40 @@
       <input type="password" name="password" id="password">
       <br/><br/>
       <button type="submit">Login</button>
+
+      <div><a href="/login">GOOGLE SIGN IN</a>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+            <meta name="google-signin-client_id" content="1048856689894-39vdb2phm51qr4io83gid11biphvl86j.apps.googleusercontent.com">
+
+            <script src="https://apis.google.com/js/platform.js" async defer></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="script.js"></script>
+
+            <style>
+              .g-signin{
+                  margin-left: 500px;
+                  margin-right: 200px;
+              }
+
+              .data{
+                display:none;
+              }
+            </style>
+
+        </div>
+
+        <div class="g-signin" data-onsuccess="onSignIn">
+        </div>
+        <div class="data">
+          <p> Profile Deets</p>
+          <img id="sign-in-pic" class="img-circle" width="100" height="100"/>
+          <p>EMAIL</p>
+          <p id="email" class= "alert-danger"></p>
+          <button onclick="signOut()" class="btn btn-danger">SIGN OUT</button>
+        </div>
+
+
     </form>
 
     <p>New users can register <a href="/register">here</a>.</p>
