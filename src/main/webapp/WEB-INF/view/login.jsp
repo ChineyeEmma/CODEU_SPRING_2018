@@ -48,8 +48,6 @@
       <br/>
       <input type="password" name="password" id="password">
       <br/><br/>
-      <button type="submit">Login</button>
-
       <div><a href="/login">GOOGLE SIGN IN</a>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -60,9 +58,9 @@
             <script src="script.js"></script>
 
             <style>
-              .g-signin{
-                  margin-left: 500px;
-                  margin-right: 200px;
+              .g-signin2{
+                  margin-left: 50px;
+                  margin-right: 20px;
               }
 
               .data{
@@ -72,7 +70,7 @@
 
         </div>
 
-        <div class="g-signin" data-onsuccess="onSignIn">
+        <div class="g-signin2" data-onsuccess="onSignIn">
         </div>
         <div class="data">
           <p> Profile Deets</p>

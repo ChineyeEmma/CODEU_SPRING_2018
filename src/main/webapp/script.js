@@ -15,7 +15,7 @@ function signOut()
 
 		alert("You have been signed out, have a good one!");
 
-		$(".g-signin").css("display", "none");
+		$(".g-signin2").css("display", "none");
 
 	});
 }
