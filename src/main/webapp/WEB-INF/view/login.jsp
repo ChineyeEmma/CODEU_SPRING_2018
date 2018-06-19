@@ -56,6 +56,13 @@
             <script src="https://apis.google.com/js/platform.js" async defer></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="script.js"></script>
+            <script>
+                function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                console.log('User signed out.');
+              } );}
+            </script>
 
             <style>
               .g-signin2{
@@ -64,8 +71,8 @@
               }
 
               .data{
-                display:none;
               }
+
             </style>
 
         </div>
@@ -77,7 +84,7 @@
           <img id="sign-in-pic" class="img-circle" width="100" height="100"/>
           <p>EMAIL</p>
           <p id="email" class= "alert-danger"></p>
-          <button onclick="signOut()" class="btn btn-danger">SIGN OUT</button>
+         
         </div>
 
 
