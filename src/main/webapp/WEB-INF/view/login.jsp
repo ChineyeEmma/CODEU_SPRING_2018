@@ -48,10 +48,10 @@
       <br/>
       <input type="password" name="password" id="password">
       <br/><br/>
-      <div><a href="/login">GOOGLE SIGN IN</a>
+      <div><a href="/login"></a>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-            <meta name="google-signin-client_id" content="1048856689894-39vdb2phm51qr4io83gid11biphvl86j.apps.googleusercontent.com">
+            <meta name="google-signin-client_id" content="1048856689894-l74tkon6ne6pn6c45i6le89o42m1n0bd.apps.googleusercontent.com">
 
             <script src="https://apis.google.com/js/platform.js" async defer></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
