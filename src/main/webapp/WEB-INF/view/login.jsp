@@ -18,6 +18,27 @@
 <head>
   <title>Login</title>
   <link rel="stylesheet" href="/css/main.css">
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+            <meta name="google-signin-client_id" content="1048856689894-l74tkon6ne6pn6c45i6le89o42m1n0bd.apps.googleusercontent.com">
+
+            <script src="https://apis.google.com/js/platform.js" async defer></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="/js/script.js"></script>
+      
+
+    <style>
+              .g-signin2{
+                  margin-left: 50px;
+                  margin-right: 20px;
+              }
+
+              .data{
+              }
+
+    </style>
+
 </head>
 <body>
 
@@ -49,31 +70,6 @@
       <input type="password" name="password" id="password">
       <br/><br/>
       <div><a href="/login"></a>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-            <meta name="google-signin-client_id" content="1048856689894-l74tkon6ne6pn6c45i6le89o42m1n0bd.apps.googleusercontent.com">
-
-            <script src="https://apis.google.com/js/platform.js" async defer></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script src="script.js"></script>
-            <script>
-                function signOut() {
-                var auth2 = gapi.auth2.getAuthInstance();
-                auth2.signOut().then(function () {
-                console.log('User signed out.');
-              } );}
-            </script>
-
-            <style>
-              .g-signin2{
-                  margin-left: 50px;
-                  margin-right: 20px;
-              }
-
-              .data{
-              }
-
-            </style>
 
         </div>
 
