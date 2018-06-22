@@ -13,6 +13,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 --%>
+ <%-- these three imports bring our infromation from the DataStore class --%>
+<%@ page import="codeu.model.store.basic.ConversationStore" %>
+    <%@ page import="codeu.model.store.basic.UserStore"%>
+     <%@ page import="codeu.model.store.basic.MessageStore"%>
+     <%-- These three steps give us the value of the Datastore .size() methods and also stores their values --%>
+<% 
+int numConversations = ConversationStore.getInstance().getNumConversations();
+int numUsers = UserStore.getInstance().getNumUsers();
+int numMessages = MessageStore.getInstance().getNumMessages();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,14 +43,21 @@
     <a href="/admin.jsp">Admin</a>
   </nav>
 
-
 </ul>
   <div id="container">
     <div
       style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
-      <h1>Here is the administrative page </h1>
-   
+      <h1>Here is the administrative page 
+</h1>
+<p>
+    <%-- This calls their numbers and displayes them on the page --%>
+<li>The conversation count is <%= numConversations%> </li> 
+<li>The user count is <%= numUsers%></li>
+<li>There have been <%= numMessages%> messages</li>:
+      </p>
+
+         
     </div>
   </div>
 </body>

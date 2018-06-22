@@ -14,6 +14,10 @@
 
 package codeu.controller;
 
+
+import codeu.model.store.basic.ConversationStore;
+import codeu.model.store.basic.MessageStore;
+import codeu.model.store.basic.UserStore;
 import codeu.model.data.User;
 import codeu.model.store.basic.UserStore;
 import java.io.IOException;
@@ -24,33 +28,38 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-/** Servlet class responsible for the login page. */
+
 public class adminloginServlet extends HttpServlet {
+ 
+    /** These three store classes brings acces to UserStore,MessageStore and ConversationStore */
+    private ConversationStore conversationStore;
+    private UserStore userStore;
+    private MessageStore messageStore;
+    
 
-  /** Store class that gives access to Users. */
-  private UserStore userStore;
-
+    /** Data Store methods are placed in the init() method as it allows for the frame work of the admin.jsp */
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        setConversationStore(ConversationStore.getInstance());
+        setMessageStore(MessageStore.getInstance());
+        setUserStore(UserStore.getInstance());
+    }
+ void setConversationStore(ConversationStore conversationStore) {
+        this.conversationStore = conversationStore;
+    }
+    void setUserStore(UserStore userStore) {
+        this.userStore = userStore;
+  }
+    void setMessageStore(MessageStore messageStore) {
+        this.messageStore = messageStore;
+    }
+    
   /**
    * Set up state for handling login-related requests. This method is only called when running in a
    * server, not when running in a test.
    */
-  @Override
-  public void init() throws ServletException {
-    super.init();
-    setUserStore(UserStore.getInstance());
-  }
-          
-          
-  /**
-   * Sets the UserStore used by this servlet. This function provides a common setup method for use
-   * by the test framework or the servlet's init() function.
-   */
-  void setUserStore(UserStore userStore) {
-    
-
-    this.userStore = userStore;
-  }
-
+  
   /**
    * This function fires when a user requests the /login URL. It simply forwards the request to
    * login.jsp.
