@@ -24,7 +24,9 @@
             <meta name="google-signin-client_id" content="1048856689894-l74tkon6ne6pn6c45i6le89o42m1n0bd.apps.googleusercontent.com">
 
             <script src="https://apis.google.com/js/platform.js" async defer></script>
+
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
             <script src="/js/script.js"></script>
       
 
@@ -35,6 +37,8 @@
               }
 
               .data{
+
+                  display: none;
               }
 
     </style>
@@ -69,15 +73,17 @@
       <br/>
       <input type="password" name="password" id="password">
       <br/><br/>
-      <div><a href="/login"></a>
-
-        </div>
+      <div><a href="/login"></a></div>
 
         <div class="g-signin2" data-onsuccess="onSignIn">
         </div>
+
+        <!--Google Oauth: Sign In Info-->
         <div class="data">
           <p> Profile Deets</p>
-          <img id="sign-in-pic" class="img-circle" width="100" height="100"/>
+          <!--Profile Pic-->
+          <img id="pic" class="img-circle" width="100" height="100"/>
+          <!--Email Address-->
           <p>EMAIL</p>
           <p id="email" class= "alert-danger"></p>
          
