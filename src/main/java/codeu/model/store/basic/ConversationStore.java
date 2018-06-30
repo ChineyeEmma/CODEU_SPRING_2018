@@ -63,10 +63,7 @@ public class ConversationStore {
     this.persistentStorageAgent = persistentStorageAgent;
     conversations = new ArrayList<>();
   }
- // creates a new method that returns the amount of converstaions
-   public int getNumConversations() {
-    return conversations.size();
-  }
+
 /** Access the current set of conversations known to the application. */
   public List<Conversation> getAllConversations() {
     return conversations;
@@ -102,7 +99,5 @@ public class ConversationStore {
   /** Sets the List of Conversations stored by this ConversationStore. */
   public void setConversations(List<Conversation> conversations) {
     this.conversations = conversations;
-
   }
-  
 }

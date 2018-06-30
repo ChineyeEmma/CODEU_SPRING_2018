@@ -64,10 +64,7 @@ public class MessageStore {
     this.persistentStorageAgent = persistentStorageAgent;
     messages = new ArrayList<>();
   }
-   //creates a new method that returns the amount of Messages
-  public int getNumMessages() {
-    return messages.size();
-  }
+
   /** Add a new message to the current set of messages known to the application. */
   public void addMessage(Message message) {
     messages.add(message);
