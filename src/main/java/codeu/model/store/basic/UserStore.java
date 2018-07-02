@@ -129,5 +129,9 @@ public class UserStore {
   public void setUsers(List<User> users) {
     this.users = users;
   }
+  /** This will return however many members are in the app */
+  public List<User> getAllUsers() {
+    return users;
+  }
 }
 

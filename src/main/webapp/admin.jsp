@@ -14,15 +14,15 @@
   limitations under the License.
 --%>
  <%-- these three imports bring our infromation from the DataStore class --%>
-<%@ page import="codeu.model.store.basic.ConversationStore" %>
+    <%@ page import="codeu.model.store.basic.ConversationStore" %>
     <%@ page import="codeu.model.store.basic.UserStore"%>
-     <%@ page import="codeu.model.store.basic.MessageStore"%>
+    <%@ page import="codeu.model.store.basic.MessageStore"%>
      <%-- These three steps give us the value of the Datastore .size() methods and also stores their values --%>
-<% 
-int numConversations = ConversationStore.getInstance().getNumConversations();
-int numUsers = UserStore.getInstance().getNumUsers();
-int numMessages = MessageStore.getInstance().getNumMessages();
-%>
+    <% 
+       int numConversations = ConversationStore.getInstance().getNumConversations();
+       int numUsers = UserStore.getInstance().getNumUsers();
+       int numMessages = MessageStore.getInstance().getNumMessages();
+    %>
 
 <!DOCTYPE html>
 <html>
@@ -48,14 +48,16 @@ int numMessages = MessageStore.getInstance().getNumMessages();
     <div
       style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
-      <h1>Here is the administrative page 
-</h1>
+      <h1>Here is the administrative page </h1>
 <p>
-    <%-- This calls their numbers and displayes them on the page --%>
-<li>The conversation count is <%= numConversations%> </li> 
-<li>The user count is <%= numUsers%></li>
-<li>There have been <%= numMessages%> messages</li>:
-      </p>
+    <ul><%-- This calls their numbers and displayes them on the page --%>
+      <li>The conversation count is <%= numConversations%> </li> 
+      <li>The user count is <%= numUsers%></li>
+      <li>There have been <%= numMessages%> messages</li>
+      <li>The most active user is </li>
+      <li>The wordiest user is </li>
+    </ul>
+</p>
 
          
     </div>
