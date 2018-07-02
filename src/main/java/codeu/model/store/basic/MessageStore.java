@@ -19,6 +19,8 @@ import codeu.model.store.persistence.PersistentStorageAgent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import codeu.model.data.User;
+
 
 /**
  * Store class that uses in-memory data structures to hold values and automatically loads from and
@@ -64,7 +66,10 @@ public class MessageStore {
     this.persistentStorageAgent = persistentStorageAgent;
     messages = new ArrayList<>();
   }
-
+   //creates a new method that returns the amount of Messages
+  public int getNumMessages() {
+    return messages.size();
+  }
   /** Add a new message to the current set of messages known to the application. */
   public void addMessage(Message message) {
     messages.add(message);
@@ -88,5 +93,13 @@ public class MessageStore {
   /** Sets the List of Messages stored by this MessageStore. */
   public void setMessages(List<Message> messages) {
     this.messages = messages;
+
+  }/** function that allows for deletion in the future*/
+  public void deleteMessage(Message message) {
+     messages.remove(message);
+     persistentStorageAgent.writeThrough(message);
+}/** function that gets all of the messages*/
+public List<Message> getAllMessages() {
+    return messages;
   }
 }

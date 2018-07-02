@@ -85,6 +85,8 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
         <input type="text" name="message">
         <br/>
         <button type="submit">Send</button>
+        <button type="remove">Delete</button>
+        <button type="button">edit</button>
     </form>
     <% } else { %>
       <p><a href="/login">Login</a> to send a message.</p>
