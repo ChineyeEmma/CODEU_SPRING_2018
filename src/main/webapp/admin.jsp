@@ -19,9 +19,10 @@
     <%@ page import="codeu.model.store.basic.MessageStore"%>
      <%-- These three steps give us the value of the Datastore .size() methods and also stores their values --%>
     <% 
-       int numConversations = ConversationStore.getInstance().getNumConversations();
+       int numConversations = ConversationStore.getInstance().
        int numUsers = UserStore.getInstance().getNumUsers();
        int numMessages = MessageStore.getInstance().getNumMessages();
+       
     %>
 
 <!DOCTYPE html>
@@ -43,7 +44,7 @@
     <a href="/admin.jsp">Admin</a>
   </nav>
 
-</ul>
+
   <div id="container">
     <div
       style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
@@ -54,7 +55,7 @@
       <li>The conversation count is <%= numConversations%> </li> 
       <li>The user count is <%= numUsers%></li>
       <li>There have been <%= numMessages%> messages</li>
-      <li>The most active user is </li>
+      <li>The most active user is <%= request.getAttribute("users") %> </li>
       <li>The wordiest user is </li>
     </ul>
 </p>

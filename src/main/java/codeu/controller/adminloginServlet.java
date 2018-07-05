@@ -15,12 +15,16 @@
 package codeu.controller;
 
 
+import codeu.model.data.User;
+import codeu.model.data.Conversation;
+import codeu.model.data.Message;
+import codeu.model.store.basic.UserStore;
 import codeu.model.store.basic.ConversationStore;
 import codeu.model.store.basic.MessageStore;
-import codeu.model.store.basic.UserStore;
-import codeu.model.data.User;
-import codeu.model.store.basic.UserStore;
 import java.io.IOException;
+
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,21 +49,17 @@ public class adminloginServlet extends HttpServlet {
         setMessageStore(MessageStore.getInstance());
         setUserStore(UserStore.getInstance());
     }
- void setConversationStore(ConversationStore conversationStore) {
+           void setConversationStore(ConversationStore conversationStore) {
         this.conversationStore = conversationStore;
     }
-    void setUserStore(UserStore userStore) {
+           void setUserStore(UserStore userStore) {
         this.userStore = userStore;
-  }
-    void setMessageStore(MessageStore messageStore) {
+    }
+           void setMessageStore(MessageStore messageStore) {
         this.messageStore = messageStore;
     }
     
-  /**
-   * Set up state for handling login-related requests. This method is only called when running in a
-   * server, not when running in a test.
-   */
-  
+ 
   /**
    * This function fires when a user requests the /login URL. It simply forwards the request to
    * login.jsp.
@@ -68,7 +68,28 @@ public class adminloginServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
     request.getRequestDispatcher("/WEB-INF/view/adminlogin.jsp").forward(request, response);
-    
+    String username = (String) request.getSession().getAttribute("user");
+    List<User> users = userStore.getAllUsers();
+    List<Message> messages = messageStore.getAllMessages();
+    int count = 0;
+    int max = 0;
+    String mostActiveUser =  null;
+    for (Message message : messages) {
+      count=0;
+      for(User user : users){
+        String active = UserStore.getInstance().getUser(message.getAuthorId()).getName();
+         if(active.equals(user.getName())){
+           count++;
+           if(count > max){
+             max = count;
+             mostActiveUser = active;
+           }
+         } 
+       }
+    }
+   User user = userStore.getUser(mostActiveUser);
+   request.setAttribute("user", mostActiveUser);
+
   }
 
   /**
@@ -82,14 +103,17 @@ public class adminloginServlet extends HttpServlet {
     String username = request.getParameter("username");
     String password = request.getParameter("password");
 
+   if (username == null) {
+      // user is not logged in, don't let them add a message
+      response.sendRedirect("/login");
+      return;
+    }
     if (!userStore.isUserRegistered(username)) {
       request.setAttribute("error", "That username was not found.");
       request.getRequestDispatcher("/WEB-INF/view/adminlogin.jsp").forward(request, response);
       return;
     }
-     if(username.equals("admin")){
-      response.sendRedirect("/admin.jsp");
-     }
+     
     User user = userStore.getUser(username);
 
     if (!BCrypt.checkpw(password, user.getPasswordHash())) {
@@ -97,8 +121,10 @@ public class adminloginServlet extends HttpServlet {
       request.getRequestDispatcher("/WEB-INF/view/adminlogin.jsp").forward(request, response);
       return;
     }
-
+    if(username.equals("admin")){
+      response.sendRedirect("/admin.jsp");
+    }
     request.getSession().setAttribute("user", username);
-    response.sendRedirect("/admin.jsp");
+    
   }
 }
