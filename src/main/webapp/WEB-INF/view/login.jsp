@@ -31,12 +31,14 @@
       
 
     <style>
-              .g-signin2{
+              .g-signin2
+              {
                   margin-left: 50px;
                   margin-right: 20px;
               }
 
-              .data{
+              .data
+              {
 
                   display: none;
               }
@@ -58,6 +60,7 @@
   </nav>
 
   <div id="container">
+
     <h1>Login</h1>
 
     <% if(request.getAttribute("error") != null){ %>
@@ -75,11 +78,11 @@
       <br/><br/>
       <div><a href="/login"></a></div>
 
-        <div class="g-signin2" data-onsuccess="onSignIn">
-        </div>
+      <div class="g-signin2" data-onsuccess="onSignIn">
+      </div>
 
-        <!--Google Oauth: Sign In Info-->
-        <div class="data">
+      <!--Google Oauth: Sign In Info-->
+      <div class="data">
           <p> Profile Deets</p>
           <!--Profile Pic-->
           <img id="pic" class="img-circle" width="100" height="100"/>
@@ -92,7 +95,9 @@
 
     </form>
 
-    <p>New users can register <a href="/register">here</a>.</p>
+    <p>New users can register <a href="/register">here</a>.
+    </p>
+    
   </div>
 </body>
 </html>
