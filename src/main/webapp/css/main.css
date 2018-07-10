@@ -89,11 +89,10 @@ ul {
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
-    margin: auto;
+    margin: 10px auto auto auto;
     cursor: pointer;
     -webkit-transition-duration: 0.4s;/*for Safari*/
     transition-duration: 0.4s;
-    margin-top: 10px;
 }
 
 /*the styling for the buttons on the welome page of the app*/
