@@ -35,11 +35,14 @@
     <div
       style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
-      <h1>Team4 Chat App</h1>
-      <h2>Welcome!</h2>
+      <h1>Team Four Chat App</h1>
+      <h2>Welcome to our webchat app!</h2>
 
       <ul>
-        <li><a href="/login">Login</a> to get started.</li>
+        <li>
+            <a href="/login"><button class="linkButtons homeButtons">Login to get started.</button></a>
+            
+        </li>
 
         <li>Go to the <a href="/conversations">conversations</a> page to
             create or join a conversation.</li>

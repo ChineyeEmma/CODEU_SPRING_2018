@@ -75,3 +75,30 @@ div.polaroidCon {
 ul {
   list-style-type: none;
 }
+
+
+/*the styling for the buttons on the welome page of the app*/
+.linkButtons{
+
+    width: 300px;
+    background-color: #d62d20;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: auto;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;/*for Safari*/
+    transition-duration: 0.4s;
+}
+
+/*the styling for the buttons on the welome page of the app*/
+.homeButtons:hover{
+  box-shadow: 0 12px 16px 
+  0 rgba(0,0,0,0.24),0 17px 
+  50px 0 rgba(0,0,0,0.19);
+
+}
