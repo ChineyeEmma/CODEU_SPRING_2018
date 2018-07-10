@@ -40,14 +40,21 @@
 
       <ul>
         <li>
-            <a href="/login"><button class="linkButtons homeButtons">Login to get started.</button></a>
-            
+            <a href="/login"><button class="linkButtons homeButtons">Login to Get Started.</button></a>
         </li>
 
-        <li>Go to the <a href="/conversations">conversations</a> page to
-            create or join a conversation.</li>
-        <li>View the <a href="/about.jsp">about</a> page to learn more about the
-            project.</li>
+        <li>
+            <a href="/conversations"><button class="linkButtons homeButtons">Start A Conversation!</button></a>
+        </li>
+
+        <li>
+            <a href="/about.jsp"><button class="linkButtons homeButtons">About Us and Our Project!</button></a>
+        </li>
+
+         <li>
+            <a href="/adminlogin"><button class="linkButtons homeButtons">Admin Page</button></a>
+        </li>
+            
       </ul>
     </div>
   </div>

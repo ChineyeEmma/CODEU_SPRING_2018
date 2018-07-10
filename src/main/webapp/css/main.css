@@ -80,7 +80,7 @@ ul {
 /*the styling for the buttons on the welome page of the app*/
 .linkButtons{
 
-    width: 300px;
+    width: 400px;
     background-color: #d62d20;
     border: none;
     color: white;
@@ -93,6 +93,7 @@ ul {
     cursor: pointer;
     -webkit-transition-duration: 0.4s;/*for Safari*/
     transition-duration: 0.4s;
+    margin-top: 10px;
 }
 
 /*the styling for the buttons on the welome page of the app*/
