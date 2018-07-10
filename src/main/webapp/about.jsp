@@ -33,7 +33,7 @@
     <a href="/about.jsp">About</a>
   </nav>
 
-  <div id="container">
+  <div id="container" style="margin:auto">
     <div
       style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
