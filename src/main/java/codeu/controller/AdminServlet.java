@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.mindrot.jbcrypt.BCrypt;
 
 
-public class adminloginServlet extends HttpServlet {
+public class AdminServlet extends HttpServlet {
  
     /** These three store classes brings acces to UserStore,MessageStore and ConversationStore */
     private ConversationStore conversationStore;
@@ -78,7 +78,10 @@ public class adminloginServlet extends HttpServlet {
       count=0;
       for(User user : users){
         String active = UserStore.getInstance().getUser(message.getAuthorId()).getName();
-         if(active.equals(user.getName())){
+         
+         System.out.println("active is" + active);
+         System.out.println("user.getName is" +user.getName());
+          if(active.equals(user.getName())){
            count++;
            if(count > max){
              max = count;

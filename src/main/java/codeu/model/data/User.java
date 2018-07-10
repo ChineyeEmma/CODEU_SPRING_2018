@@ -23,7 +23,7 @@ public class User {
   private final String name;
   private final String passwordHash;
   private final Instant creation;
-
+  private boolean isAdmin;
   /**
    * Constructs a new User.
    *
@@ -32,18 +32,20 @@ public class User {
    * @param passwordHash the password of this User
    * @param creation the creation time of this User
    */
-  public User(UUID id, String name, String passwordHash, Instant creation) {
+  public User(UUID id, String name, String passwordHash, Instant creation, boolean isAdmin) {
     this.id = id;
     this.name = name;
     this.passwordHash = passwordHash;
     this.creation = creation;
-  }
-
+    this.isAdmin = isAdmin;
+ }
   /** Returns the ID of this User. */
   public UUID getId() {
     return id;
   }
-
+public boolean isAdmin(){
+  return isAdmin;
+  }
   /** Returns the username of this User. */
   public String getName() {
     return name;
