@@ -18,6 +18,7 @@
 <head>
   <title>CodeU Chat App</title>
   <link rel="stylesheet" href="/css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
 
@@ -37,6 +38,16 @@
       style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
       <h1>About the Team4 coders</h1>
+
+      <!--picture of doggo-->
+      <div class="polaroid">
+        <img src="https://pbs.twimg.com/profile_images/888907252702347265/g2JwwLDR_400x400.jpg" alt="doggo" style="width:100%">
+          <div class="polaroidCon">
+            <p>doggo.</p>
+          </div>
+      </div>
+
+
       <p>
         This is a chat app created by 3 CodeU students and one google advisor 
       </p>
