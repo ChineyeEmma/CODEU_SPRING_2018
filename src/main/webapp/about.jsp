@@ -37,7 +37,7 @@
     <div
       style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
-      <h1>About the Team4 coders</h1>
+      <h1 align="center">About the Team4 coders</h1>
 
       <!--picture of doggo-->
       <div class="polaroid">
@@ -48,6 +48,7 @@
       </div>
 
 
+    <div align="center">
       <p>
         This is a chat app created by 3 CodeU students and one google advisor 
       </p>
@@ -64,6 +65,7 @@
         This website that you are currently on is our teams summer project. We were given the task to modify and enhance a very basic chat app. Each of us were given a specific task to complete and we as a team had to work together in order to make sure we created a functional app that we are proud of .
       </p>
     </div>
+  </div>
   </div>
 </body>
 </html>

@@ -25,6 +25,7 @@ body {
 
 nav {
   background-color: #d62d20;
+  margin:auto;
 }
 
 nav a {
@@ -69,4 +70,8 @@ div.polaroid {
 
 div.polaroidCon {
   padding: 10px;
+}
+
+ul {
+  list-style-type: none;
 }
