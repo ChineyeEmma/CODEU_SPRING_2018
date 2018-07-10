@@ -14,12 +14,12 @@
  */
 
 body {
-  margin: 0;
+  margin: auto;
   font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
   font-size: 18px;
   line-height: 1.6;
-  color: #444;
+  color: black;
   background-color: #eeeeee;
 }
 
