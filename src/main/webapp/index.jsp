@@ -51,7 +51,7 @@
             <a href="/about.jsp"><button class="linkButtons homeButtons">About Us and Our Project!</button></a>
         </li>
 
-         <li>
+        <li>
             <a href="/adminlogin"><button class="linkButtons homeButtons">Admin Page</button></a>
         </li>
             
