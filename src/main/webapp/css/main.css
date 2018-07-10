@@ -15,7 +15,7 @@
 
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
   font-size: 18px;
   line-height: 1.6;
@@ -24,7 +24,7 @@ body {
 }
 
 nav {
-  background-color: #283593;
+  background-color: #d62d20;
 }
 
 nav a {
@@ -55,4 +55,18 @@ input {
 
 button {
   font-size: 18px;
+}
+
+div.polaroid {
+
+  width:250px;
+  box-shadow: 0 4px 8px 0 
+  rgba(0, 0, 0, 0.2), 0 6px 20px 0 
+  rgba(0, 0, 0, 0.19);
+  text-align: center;
+  margin:auto;
+}
+
+div.polaroidCon {
+  padding: 10px;
 }
