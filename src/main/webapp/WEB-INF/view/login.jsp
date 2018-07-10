@@ -18,6 +18,33 @@
 <head>
   <title>Login</title>
   <link rel="stylesheet" href="/css/main.css">
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+            <meta name="google-signin-client_id" content="1048856689894-l74tkon6ne6pn6c45i6le89o42m1n0bd.apps.googleusercontent.com">
+
+            <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+            <script src="/js/script.js"></script>
+      
+
+    <style>
+              .g-signin2
+              {
+                  margin-left: 50px;
+                  margin-right: 20px;
+              }
+
+              .data
+              {
+
+                  display: none;
+              }
+
+    </style>
+
 </head>
 <body>
 
@@ -33,6 +60,7 @@
   </nav>
 
   <div id="container">
+
     <h1>Login</h1>
 
     <% if(request.getAttribute("error") != null){ %>
@@ -48,10 +76,28 @@
       <br/>
       <input type="password" name="password" id="password">
       <br/><br/>
-      <button type="submit">Login</button>
+      <div><a href="/login"></a></div>
+
+      <div class="g-signin2" data-onsuccess="onSignIn">
+      </div>
+
+      <!--Google Oauth: Sign In Info-->
+      <div class="data">
+          <p> Profile Deets</p>
+          <!--Profile Pic-->
+          <img id="pic" class="img-circle" width="100" height="100"/>
+          <!--Email Address-->
+          <p>EMAIL</p>
+          <p id="email" class= "alert-danger"></p>
+         
+        </div>
+
+
     </form>
 
-    <p>New users can register <a href="/register">here</a>.</p>
+    <p>New users can register <a href="/register">here</a>.
+    </p>
+    
   </div>
 </body>
 </html>

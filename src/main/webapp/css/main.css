@@ -14,17 +14,18 @@
  */
 
 body {
-  margin: 0;
-  font-family: sans-serif;
+  margin: auto;
+  font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
   font-size: 18px;
   line-height: 1.6;
-  color: #444;
+  color: black;
   background-color: #eeeeee;
 }
 
 nav {
-  background-color: #283593;
+  background-color: #d62d20;
+  margin:auto;
 }
 
 nav a {
@@ -55,4 +56,49 @@ input {
 
 button {
   font-size: 18px;
+}
+
+div.polaroid {
+
+  width:250px;
+  box-shadow: 0 4px 8px 0 
+  rgba(0, 0, 0, 0.2), 0 6px 20px 0 
+  rgba(0, 0, 0, 0.19);
+  text-align: center;
+  margin:auto;
+}
+
+div.polaroidCon {
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+
+/*the styling for the buttons on the welome page of the app*/
+.linkButtons{
+
+    width: 400px;
+    background-color: #d62d20;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 10px auto auto auto;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;/*for Safari*/
+    transition-duration: 0.4s;
+}
+
+/*the styling for the buttons on the welome page of the app*/
+.homeButtons:hover{
+  box-shadow: 0 12px 16px 
+  0 rgba(0,0,0,0.24),0 17px 
+  50px 0 rgba(0,0,0,0.19);
+
 }
