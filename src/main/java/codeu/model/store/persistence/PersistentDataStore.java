@@ -1,4 +1,4 @@
-// Copyright 2017 Google Inc.
+persistan// Copyright 2017 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -179,6 +179,9 @@ public class PersistentDataStore {
     conversationEntity.setProperty("title", conversation.getTitle());
     conversationEntity.setProperty("creation_time", conversation.getCreationTime().toString());
     datastore.put(conversationEntity);
+  }
+  public void deleteThrough(Message message) {
+        datastore.delete(message);
   }
 }
 

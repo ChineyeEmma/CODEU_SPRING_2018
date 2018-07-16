@@ -99,7 +99,18 @@ public class MessageStore {
      messages.remove(message);
      persistentStorageAgent.writeThrough(message);
 }/** function that gets all of the messages*/
-public List<Message> getAllMessages() {
-    return messages;
+ public List<Message> getAllMessages() {
+      return messages;
+    }
+  public ArrayList<Message> getMessagesFromUser(User user){
+    ArrayList<Message> userMessages = new ArrayList<Message> ();
+    for(Message message : messages){
+      String author = UserStore.getInstance()
+        .getUser(message.getAuthorId()).getName();
+      if(author.equals(user.getName())){
+           userMessages.add(message);
+         }
+       }
+    return userMessages;
   }
 }
