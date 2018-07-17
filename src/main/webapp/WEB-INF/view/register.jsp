@@ -33,23 +33,37 @@
   </nav>
 
   <div id="container">
-    <h1>Register</h1>
+
+    <div id="RegCon" style="margin-left: 40%">
+
+    <span style="font-size: 60px;">Register</span>
+
+    
+
+    <form action="/register" method="POST">
+
+      <label for="username" style="font-family:Roboto; margin-top: 30px;">Username: </label>
+      <br>
+      <input type="text" name="username" id="username" style="width: 50%; height: 40px;">
+      <br>
+      <label for="password" style="margin-top: 20px;font-family:Roboto;">Password: </label>
+      <br>
+      <input type="password" name="password" id="password" style="width: 50%; height: 40px;">
+      <br><br>
+
+      <div><a href="/register">
+
+      <button type="submit">Register</button>
 
     <% if(request.getAttribute("error") != null){ %>
         <h2 style="color:red"><%= request.getAttribute("error") %></h2>
-    <% } %>
 
-    <form action="/register" method="POST">
-      <label for="username">Username: </label>
-      <br/>
-      <input type="text" name="username" id="username">
-      <br/>
-      <label for="password">Password: </label>
-      <br/>
-      <input type="password" name="password" id="password">
-      <br/><br/>
-      <button type="submit">Submit</button>
-    </form>
+
+    <% } %>
   </div>
+  </form>
+</div>
+</div>
 </body>
 </html>
+

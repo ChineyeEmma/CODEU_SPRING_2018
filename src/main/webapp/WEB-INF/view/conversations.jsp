@@ -29,7 +29,7 @@
   <nav>
     <a id="navTitle" href="/">Yada-Yada</a>
 
-    <span class="navicons" style="text-align: right; margin-left:60%">
+    <span class="navicons" style="text-align: right; margin-left:50%">
       <a href="/conversations"><i class="fas fa-comments"></i></a>
       <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
@@ -61,7 +61,7 @@
       <hr/>
     <% } %>
 
-    <h1>Conversations</h1>
+    <h1><%= request.getSession().getAttribute("user") %>'s Conversations</h1>
 
     <%
     List<Conversation> conversations =

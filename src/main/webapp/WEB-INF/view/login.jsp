@@ -67,27 +67,48 @@
 
   <div id="container">
 
-    <div id="logCon">
-      
-    <h1>Login</h1>
+    <div id="logCon" style="margin-left: 40%">
+
+    <span style="font-size: 60px;">Login</span>
 
     <% if(request.getAttribute("error") != null){ %>
         <h2 style="color:red"><%= request.getAttribute("error") %></h2>
     <% } %>
 
     <form action="/login" method="POST">
-      <label for="username">Username: </label>
-      <br/>
-      <input type="text" name="username" id="username">
-      <br/>
-      <label for="password">Password: </label>
-      <br/>
-      <input type="password" name="password" id="password">
-      <br/><br/>
-      <div><a href="/login"></a></div>
 
-      <div class="g-signin2" data-onsuccess="onSignIn">
+      <label for="username" style="font-family:Roboto; margin-top: 30px;">Username: </label>
+      <br/>
+      <input type="text" name="username" id="username" autocomplete="username email" style="width: 50%; height: 40px;">
+      <br/>
+      <label for="password" style="margin-top: 20px;font-family:Roboto;" autocomplete="password">Password: </label>
+      <br/>
+      <input type="password" name="password" id="password" style="width: 50%; height: 40px;">
+      <br/><br/>
+      <div>
+
+      <a href="/login">
+
+        <button type="submit">Login</button>
+
+      </a>
+
+    </div>
+
+      <!--Google Sign In Button-->
+      <a href="/login">
+
+        <button type="submit"><div class="g-signin2" href="/login" data-onsuccess="onSignIn" style="margin-left: 0px; width: 200%"></button>
+        </div>
+
+        <!--somehow save the username from basic profile as the username and same for password-->
+      </a>
+
       </div>
+
+
+    </form>
+
 
       <!--Google Oauth: Sign In Info-->
       <div class="data">
@@ -101,9 +122,7 @@
       </div>
 
 
-    </form>
-
-    <p>New users can register <a href="/register">here</a>.
+    <p style="font-family: Roboto; margin-top:10px;">New users can register <a href="/register">here</a>.
     </p>
     
     </div>

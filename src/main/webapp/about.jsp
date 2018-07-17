@@ -55,14 +55,13 @@
 
     <div align="center">
       <p>
-        This is a chat app created by 3 CodeU students and one Google advisor 
+        This is a chat app created by 2 CodeU students and one Google advisor 
       </p>
 
       <ul>
 
         <li><strong>John Thomas (Admin)</strong> </li>
         <li><strong>Chineye Emeghara (Style Text and UI)</strong> </li>
-        <li><strong>David Fernandez-Wang</strong> </li>
         <li><strong>Jonathan Tan - PA,</strong> </li>
 
       </ul>
