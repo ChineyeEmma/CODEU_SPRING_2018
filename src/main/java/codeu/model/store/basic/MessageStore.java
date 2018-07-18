@@ -76,6 +76,7 @@ public class MessageStore {
     persistentStorageAgent.writeThrough(message);
   }
 
+
   /** Access the current set of Messages within the given Conversation. */
   public List<Message> getMessagesInConversation(UUID conversationId) {
 
@@ -95,13 +96,16 @@ public class MessageStore {
     this.messages = messages;
 
   }/** function that allows for deletion in the future*/
-  public void deleteMessage(Message message) {
-     messages.remove(message);
-     persistentStorageAgent.writeThrough(message);
-}/** function that gets all of the messages*/
- public List<Message> getAllMessages() {
+  
+  public void deleteMessage(User user) {
+     Message message = deleteLastMessage(user);
+     persistentStorageAgent.deleteThrough(message);
+  }/** function that gets all of the messages*/
+ 
+  public List<Message> getAllMessages() {
       return messages;
-    }
+  }
+
   public ArrayList<Message> getMessagesFromUser(User user){
     ArrayList<Message> userMessages = new ArrayList<Message> ();
     for(Message message : messages){
@@ -113,4 +117,20 @@ public class MessageStore {
        }
     return userMessages;
   }
+
+
+  public Message deleteLastMessage(User user) {
+    Message message;
+    for (int i = messages.size()-1; i> -1; i--) {
+      Message message = messages.get(i);
+      String author = UserStore.getInstance()
+        .getUser(message.getAuthorId()).getName();
+      if(author.equals(user.getName())){
+           messages.remove(i);
+           break;
+      }
+    }
+    return message;  
+  }
+  
 }

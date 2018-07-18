@@ -1,4 +1,4 @@
-persistan// Copyright 2017 Google Inc.
+// Copyright 2017 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -168,7 +168,7 @@ public class PersistentDataStore {
     messageEntity.setProperty("author_uuid", message.getAuthorId().toString());
     messageEntity.setProperty("content", message.getContent());
     messageEntity.setProperty("creation_time", message.getCreationTime().toString());
-    datastore.put(messageEntity);
+    message.setDataStoreID(datastore.put(messageEntity));
   }
 
   /** Write a Conversation object to the Datastore service. */
@@ -181,7 +181,7 @@ public class PersistentDataStore {
     datastore.put(conversationEntity);
   }
   public void deleteThrough(Message message) {
-        datastore.delete(message);
+    datastore.delete(message.getDataStoreID());
   }
 }
 
