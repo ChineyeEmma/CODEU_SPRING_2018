@@ -75,54 +75,35 @@
         <h2 style="color:red"><%= request.getAttribute("error") %></h2>
     <% } %>
 
-    <form action="/login" method="POST">
+    <!--traditional sign in form-->
+    <form action="/login" method="POST" id="logForm">
 
-      <label for="username" style="font-family:Roboto; margin-top: 30px;">Username: </label>
+      <label for="username" style="font-family:Roboto; margin-top: 30px; font-size:20px; ">Username: </label>
       <br/>
-      <input type="text" name="username" id="username" autocomplete="username email" style="width: 50%; height: 40px;">
+      <input type="text" name="username" id="username" autocomplete="username email" style="width: 200px; height: 40px;">
       <br/>
-      <label for="password" style="margin-top: 20px;font-family:Roboto;" autocomplete="password">Password: </label>
+      <label for="password" style="margin-top: 20px;font-family:Roboto; font-size: 20px;" autocomplete="password">Password: </label>
       <br/>
-      <input type="password" name="password" id="password" style="width: 50%; height: 40px;">
+      <input type="password" name="password" id="password" style="width: 200px; height: 40px;">
       <br/><br/>
+
       <div>
-
-      <a href="/login">
-
-        <button type="submit">Login</button>
-
-      </a>
-
-    </div>
+          <button type="submit" id="logButton">Login</button>
+      </div>
 
       <!--Google Sign In Button-->
       <a href="/login">
-
-        <button type="submit"><div class="g-signin2" href="/login" data-onsuccess="onSignIn" style="margin-left: 0px; width: 200%"></button>
+        <div name="" type="submit" name="" class="g-signin2" href="/login" data-onsuccess="onSignIn" style="margin-left: 0px; width: 200%">
         </div>
-
-        <!--somehow save the username from basic profile as the username and same for password-->
       </a>
-
-      </div>
-
 
     </form>
 
+    <p style="font-family: Roboto; margin-top:10px; font-size: 20px;">New users can register <a href="/register">here</a>.</p>
 
-      <!--Google Oauth: Sign In Info-->
-      <div class="data">
-          <p> Profile Deets</p>
-          <!--Profile Pic-->
-          <img id="pic" class="img-circle" width="100" height="100"/>
-          <!--Email Address-->
-          <p>EMAIL</p>
-          <p id="email" class= "alert-danger"></p>
-         
-      </div>
+    <div style="height: 10px;"></div>
 
-
-    <p style="font-family: Roboto; margin-top:10px;">New users can register <a href="/register">here</a>.
+     <p style="font-family: Roboto; margin-top:10px; font-size: 20px;">change profile pic <a href="/changeprofilepic"> !</a>.
     </p>
     
     </div>

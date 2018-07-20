@@ -113,3 +113,18 @@ ul {
   font-size: 60px;
 
 }
+
+#logButton, #regButton{
+
+  width: 200px; 
+  height: 40px; 
+  background-color:white; 
+  margin-bottom:10px; font-size:20px;
+
+}
+
+#convoItem:hover{
+
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 
+  50px 0 rgba(0,0,0,0.19);
+}
