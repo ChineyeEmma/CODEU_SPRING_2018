@@ -43,8 +43,9 @@ public class RegisterServletTest {
 
   @Test
   public void testDoPost_BadUsername() throws IOException, ServletException {
-    Mockito.when(mockRequest.getParameter("username")).thenReturn("bad !@#$% username");
-
+    
+    //allow '@' for Google Sign In
+    Mockito.when(mockRequest.getParameter("username")).thenReturn("bad !#$% username");
     registerServlet.doPost(mockRequest, mockResponse);
 
     Mockito.verify(mockRequest)

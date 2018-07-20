@@ -54,6 +54,12 @@ public class Conversation {
 
   /** Returns the title of this Conversation. */
   public String getTitle() {
+
+    //if title is null, just make it an empty string
+    if (title == null){
+        return "";
+    }
+
     return title;
   }
 

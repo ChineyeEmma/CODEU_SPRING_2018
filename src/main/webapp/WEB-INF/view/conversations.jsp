@@ -61,28 +61,31 @@
       <hr/>
     <% } %>
 
-    <h1><%= request.getSession().getAttribute("user") %>'s Conversations</h1>
+    <p style="font-size: 60px; margin-left:20px;"><%= request.getSession().getAttribute("user") %>'s Conversations</p>
 
+<div>
     <%
     List<Conversation> conversations =
       (List<Conversation>) request.getAttribute("conversations");
     if(conversations == null || conversations.isEmpty()){
     %>
-      <p>Create a conversation to get started.</p>
-    <%
+      <p>Create a convo!</p>
+    w3schools.com/css/css_navbar.asp<%
     }
     else{
     %>
       <ul class="mdl-list">
     <%
+
       for(Conversation conversation : conversations){
     %>
-      <li><a href="/chat/<%= conversation.getTitle() %>">
+      <li><a id="convo-item" style="width: 80%; font-size: 30px; text-align: center; display:block; color:white; paddiing: 8px 16px; text-decoration: none; margin-top: 15px; background-color: #d62d20;" href="/chat/<%= conversation.getTitle() %>">
         <%= conversation.getTitle() %></a></li>
     <%
       }
     %>
       </ul>
+    </div>
     <%
     }
     %>
