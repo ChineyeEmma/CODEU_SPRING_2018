@@ -14,6 +14,7 @@
 
 package codeu.model.store.basic;
 
+import codeu.model.data.Conversation;
 import codeu.model.data.Message;
 import codeu.model.store.persistence.PersistentStorageAgent;
 import java.util.ArrayList;
@@ -81,23 +82,27 @@ public class MessageStore {
         messagesInConversation.add(message);
       }
     }
-
     return messagesInConversation;
   }
 
   /** Access the current set of Messages within the given Conversation that have a certain hashtag*/
-  public List<Message> getHashtagsInConversation(String hashtag) {
+  public List<String> getHashtagsInConversation(String hashtag) {
 
+	  	//returning String
         List<String> messagesWithHashtag = new ArrayList<>();
-        List<Conversation> allConvos = getAllConversations();
+        //get all convos
+        List<Conversation> allConvos = ConversationStore.getInstance().getAllConversations();
 
         for (Conversation convo : allConvos){
+        	
+        	List<Message> messagesInCurrentConvo = getMessagesInConversation(convo.getId());
 
-                  for (Message message : getMessagesInConversation(convo.getId())) {
+                  for (Message message: messagesInCurrentConvo) {
 
-                        //check if message contains the haastag
+                        //check if message contains the hashtag
                         if(message.getContent().contains(hashtag)){ 
-                              messagesWithHashtag.add(message); //add to list
+                        	//add string of message w/ hashtag to list
+                              messagesWithHashtag.add(message.getContent()); 
                         }
                     }
       }

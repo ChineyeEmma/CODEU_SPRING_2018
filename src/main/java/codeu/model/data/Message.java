@@ -25,7 +25,6 @@ public class Message {
   private final UUID author;
   private final String content;
   private final Instant creation;
-  private final String hashtag;
 
   /**
    * Constructs a new Message.
@@ -36,13 +35,12 @@ public class Message {
    * @param content the text content of this Message
    * @param creation the creation time of this Message
    */
-  public Message(UUID id, UUID conversation, UUID author, String content, Instant creation, String hashtag) {
+  public Message(UUID id, UUID conversation, UUID author, String content, Instant creation) {
     this.id = id;
     this.conversation = conversation;
     this.author = author;
     this.content = content;
     this.creation = creation;
-    this.hashtag = hashtag;
   }
 
   /** Returns the ID of this Message. */
@@ -68,15 +66,5 @@ public class Message {
   /** Returns the creation time of this Message. */
   public Instant getCreationTime() {
     return creation;
-  }
-
-  /**Returns the hastag for the method**/
-  public String getHashtag(){
-
-    if (hashtag == null){
-      return "";
-    }
-
-    return hashtag;
   }
 }

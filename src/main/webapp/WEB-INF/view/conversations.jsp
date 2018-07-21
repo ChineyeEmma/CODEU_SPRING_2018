@@ -70,6 +70,8 @@
 
     <p style="font-size: 60px; margin-left:20px;"><%= request.getSession().getAttribute("user") %>'s Conversations</p>
 
+
+
 <div>
     <%
     List<Conversation> conversations =
@@ -93,6 +95,9 @@
     %>
       </ul>
     </div>
+
+
+
     <%
     }
     %>
