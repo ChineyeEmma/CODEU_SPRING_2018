@@ -17,9 +17,6 @@ function onSignIn(googleUser)
 
     /*calling the css id's for the content I am displaying*/
 	$(".g-signin").css("display","none");
-	$(".data").css("display","block");
-	$("#pic").attr('src', profile.getImageUrl());
-	$("#email").text(profile.getEmail());
 
 	var newUsername = (profile.getName() + "@gmail");
 
@@ -30,6 +27,15 @@ function onSignIn(googleUser)
 	$("#regForm").submit(); //submit the user credential form for registration
 	$("#logForm").submit(); //submit the user credential form for login
 
+
+}
+
+/**display users gmail photo as thier avatar*/
+
+function setProfilePic(){
+
+	$(".data").css("display","block");
+	$("#pic").attr('src', profile.getImageUrl());
 
 }
 

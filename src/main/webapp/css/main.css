@@ -19,8 +19,8 @@ body {
   line-height: 1.6;
   font-size: 18px;
   line-height: 1.6;
-  color: black;
-  background-color: #fcfcfc;
+  color: white;
+  background-color: #a94442;
 }
 
 h1 h2{
@@ -117,21 +117,24 @@ ul {
 
 #logButton, #regButton{
 
-width: 200px;
+width: 400px;
 
-height: 40px;
+height: 60px;
 
-background-color:white;
+background-color: #a94442;
 
 margin-bottom:10px;
 
-font-size:20px;
+font-size:40px;
 
 border-style: solid;
 
 border-width: 2px;
 
-border-radius: 15px;;
+border-radius: 15px;
+
+color: white;
+
 
  
 }
@@ -152,4 +155,7 @@ border-radius: 15px;;
 #password, #username{
 
   border-radius: 15px;
+  width: 400px;
+  height: 60px;
+  font-size: 30px;
 }

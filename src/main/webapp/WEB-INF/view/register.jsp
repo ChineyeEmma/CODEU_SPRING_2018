@@ -58,11 +58,11 @@
 
     <form action="/register" method="POST" id="regForm">
 
-      <label for="username" style="font-family:Roboto; margin-top: 30px;">Username: </label>
+      <label for="username" style="font-family:Roboto; margin-top: 30px; font-size: 40px;">Username: </label>
       <br>
       <input type="text" name="username" id="username" style="width: 200px; height: 40px;">
       <br>
-      <label for="password" style="margin-top: 20px;font-family:Roboto;">Password: </label>
+      <label for="password" style="margin-top: 20px;font-family:Roboto;font-size: 40px;">Password: </label>
       <br>
       <input type="password" name="password" id="password" style="width: 200px; height: 40px;">
       <br><br>

@@ -69,7 +69,7 @@
 
     <div id="logCon" style="margin-left: 40%">
 
-    <span style="font-size: 60px;">Login</span>
+    <span style="font-size: 60px;">login</span>
 
     <% if(request.getAttribute("error") != null){ %>
         <h2 style="color:red"><%= request.getAttribute("error") %></h2>
@@ -78,11 +78,11 @@
     <!--traditional sign in form-->
     <form action="/login" method="POST" id="logForm">
 
-      <label for="username" style="font-family:Roboto; margin-top: 30px; font-size:20px; ">Username: </label>
+      <label for="username" style="font-family:Roboto; margin-top: 30px; font-size:40px; ">username: </label>
       <br/>
       <input type="text" name="username" id="username" autocomplete="username email" style="width: 200px; height: 40px;">
       <br/>
-      <label for="password" style="margin-top: 20px;font-family:Roboto; font-size: 20px;" autocomplete="password">Password: </label>
+      <label for="password" style="margin-top: 20px;font-family:Roboto; font-size: 40px;" autocomplete="password">password: </label>
       <br/>
       <input type="password" name="password" id="password" style="width: 200px; height: 40px;">
       <br/><br/>
@@ -101,7 +101,7 @@
 
     </form>
 
-    <p style="font-family: Roboto; margin-top:10px; font-size: 20px;">Creat and account with us <a href="/register">here!</a>.</p>
+    <p style="font-family: Roboto; margin-top:10px; font-size: 20px;">Join<a href="/register">here!</a> to chat!</p>
 
     <div style="height: 10px;"></div>
 
