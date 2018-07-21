@@ -16,21 +16,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CodeU Chat App</title>
-  <link rel="stylesheet" href="/css/main.css">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <title>Team Four Chat App</title>
+   <link href="httpsa://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+   <link rel="stylesheet" href="/css/main.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 <body>
 
-  <nav>
-    <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
-    <% if(request.getSession().getAttribute("user") != null){ %>
+<nav>
+    <a id="navTitle" href="/">Yada-Yada</a>
+
+    <span class="navicons" style="text-align: right; margin-left:60%">
+      <a href="/conversations"><i class="fas fa-comments"></i></a>
+      <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-    <% } else{ %>
-      <a href="/login">Login</a>
-    <% } %>
-    <a href="/about.jsp">About</a>
+      <% } else{ %>
+      <a href="/login"><i class="fas fa-sign-in-alt"></i></button></a>
+      <% } %>
+      <a href="/about.jsp"><i class="fas fa-user"></i></a>
+    </span>
+
   </nav>
 
   <div id="container" style="margin:auto">
@@ -50,13 +55,13 @@
 
     <div align="center">
       <p>
-        This is a chat app created by 3 CodeU students and one google advisor 
+        This is a chat app created by 2 CodeU students and one Google advisor 
       </p>
 
       <ul>
-        <li><strong>David Fernandez-Wang</strong> </li>
-        <li><strong>John Thomas</strong> </li>
-        <li><strong>Chineye Emeghara</strong> </li>
+
+        <li><strong>John Thomas (Admin)</strong> </li>
+        <li><strong>Chineye Emeghara (Style Text and UI)</strong> </li>
         <li><strong>Jonathan Tan - PA,</strong> </li>
 
       </ul>
