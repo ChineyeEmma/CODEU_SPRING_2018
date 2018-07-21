@@ -103,9 +103,6 @@
 
     <div style="height: 10px;"></div>
 
-     <p style="font-family: Roboto; margin-top:10px; font-size: 20px;">change profile pic <a href="/changeprofilepic"> !</a>.
-    </p>
-    
     </div>
   </div>
 </body>
