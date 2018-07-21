@@ -70,7 +70,7 @@
     if(conversations == null || conversations.isEmpty()){
     %>
       <p>Create a convo!</p>
-    w3schools.com/css/css_navbar.asp<%
+    <%
     }
     else{
     %>
