@@ -31,15 +31,14 @@
             <script src="/js/script.js"></script>
 
 </head>
-<body>
+    <body style="color: white; background-color: #a94442;font-family:'Roboto Light', sans-serif">
 
    <nav>
     <a id="navTitle" href="/">Yada-Yada</a>
 
     <span class="navicons" style="text-align: right; margin-left:60%">
-      <a href="/conversations"><i class="fas fa-comments"></i></a>
       <% if(request.getSession().getAttribute("user") != null){ %>
-      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+      <a>hello <%= request.getSession().getAttribute("user") %>!</a>
       <% } else{ %>
       <a href="/login"><i class="fas fa-sign-in-alt"></i></button></a>
       <% } %>
@@ -52,24 +51,24 @@
 
     <div id="RegCon" style="margin-left: 40%">
 
-    <span style="font-size: 60px;">Register</span>
+    <span style="font-size: 60px;">register</span>
 
     
 
     <form action="/register" method="POST" id="regForm">
 
-      <label for="username" style="font-family:Roboto; margin-top: 30px; font-size: 40px;">Username: </label>
+      <label for="username" style="font-family:Roboto; margin-top: 30px; font-size: 40px;">username: </label>
       <br>
-      <input type="text" name="username" id="username" style="width: 200px; height: 40px;">
+      <input type="text" name="username" id="username" >
       <br>
-      <label for="password" style="margin-top: 20px;font-family:Roboto;font-size: 40px;">Password: </label>
+      <label for="password" style="margin-top: 20px;font-family:Roboto;font-size: 40px;">password: </label>
       <br>
-      <input type="password" name="password" id="password" style="width: 200px; height: 40px;">
+      <input type="password" name="password" id="password" >
       <br><br>
 
       <div><a href="/register">
 
-      <button id="regButton" type="submit">Register</button>
+      <button id="regButton" type="submit">register</button>
 
 
        <!--Google Sign/Register In Button-->

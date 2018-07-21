@@ -48,13 +48,12 @@
     </style>
 
 </head>
-<body style="font-family:'Roboto Light', sans-serif">
+<body style="color: white; background-color: #a94442;font-family:'Roboto Light', sans-serif">
 
     <nav>
     <a id="navTitle" href="/">Yada-Yada</a>
 
     <span class="navicons" style="text-align: right; margin-left:60%">
-      <a href="/conversations"><i class="fas fa-comments"></i></a>
       <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
       <% } else{ %>
@@ -80,15 +79,15 @@
 
       <label for="username" style="font-family:Roboto; margin-top: 30px; font-size:40px; ">username: </label>
       <br/>
-      <input type="text" name="username" id="username" autocomplete="username email" style="width: 200px; height: 40px;">
+      <input type="text" name="username" id="username" autocomplete="username email">
       <br/>
       <label for="password" style="margin-top: 20px;font-family:Roboto; font-size: 40px;" autocomplete="password">password: </label>
       <br/>
-      <input type="password" name="password" id="password" style="width: 200px; height: 40px;">
+      <input type="password" name="password" id="password">
       <br/><br/>
 
       <div>
-          <button type="submit" id="logButton">Login</button>
+          <button type="submit" id="logButton">login</button>
       </div>
 
       <!--Google Sign In Button-->
@@ -101,7 +100,7 @@
 
     </form>
 
-    <p style="font-family: Roboto; margin-top:10px; font-size: 20px;">Join<a href="/register">here!</a> to chat!</p>
+    <p style="font-size: 40px; font-family: Roboto; margin-top:10px; font-size: 20px;">Join <a href="/register">here!</a> to chat!</p>
 
     <div style="height: 10px;"></div>
 

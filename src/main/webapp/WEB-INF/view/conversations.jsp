@@ -67,8 +67,7 @@
     <% } %>
 
    
-
-    <p style="font-size: 60px; margin-left:20px;"><%= request.getSession().getAttribute("user") %>'s Conversations</p>
+    <p style="font-size: 60px; margin-left:20px; font-weight: bold; color:#a94442 "><%= request.getSession().getAttribute("user") %>'s Conversations</p>
 
 
 
@@ -88,8 +87,11 @@
 
       for(Conversation conversation : conversations){
     %>
-      <li><a id="convo-item" style="width: 80%; font-size: 30px; text-align: center; display:block; color:white; paddiing: 8px 16px; text-decoration: none; margin-top: 15px; background-color: #d62d20;" href="/chat/<%= conversation.getTitle() %>">
-        <%= conversation.getTitle() %></a></li>
+      <li><a id="convo-item" style=" font-style: italic; border-radius: 20px; height: 60px; width: 60%; font-size: 50px; text-align: center; display:block; color:white; paddiing: 8px 16px; text-decoration: none; margin-top: 15px; background-color: #d62d20;" href="/chat/<%= conversation.getTitle() %>">
+
+        <%= conversation.getTitle() + " Started By: " + UserStore.getInstance().getUser(conversation.getOwnerID()).getName();%></a>
+
+      </li>
     <%
       }
     %>
