@@ -85,6 +85,26 @@ public class MessageStore {
     return messagesInConversation;
   }
 
+  /** Access the current set of Messages within the given Conversation that have a certain hashtag*/
+  public List<Message> getHashtagsInConversation(String hashtag) {
+
+        List<String> messagesWithHashtag = new ArrayList<>();
+        List<Conversation> allConvos = getAllConversations();
+
+        for (Conversation convo : allConvos){
+
+                  for (Message message : getMessagesInConversation(convo.getId())) {
+
+                        //check if message contains the haastag
+                        if(message.getContent().contains(hashtag)){ 
+                              messagesWithHashtag.add(message); //add to list
+                        }
+                    }
+      }
+
+      return messagesWithHashtag; //all messages with hastag in content
+  }
+
   /** Sets the List of Messages stored by this MessageStore. */
   public void setMessages(List<Message> messages) {
     this.messages = messages;

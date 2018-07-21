@@ -43,6 +43,11 @@
 
   <div id="container">
 
+        <!--user profile photo-->
+        <div class="data" onload="setProfilePic">
+            <img id="pic" style="width: 200px; height: 100px;"/>
+        </div>
+
     <% if(request.getAttribute("error") != null){ %>
         <h2 style="color:red"><%= request.getAttribute("error") %></h2>
     <% } %>
@@ -60,6 +65,8 @@
 
       <hr/>
     <% } %>
+
+   
 
     <p style="font-size: 60px; margin-left:20px;"><%= request.getSession().getAttribute("user") %>'s Conversations</p>
 
