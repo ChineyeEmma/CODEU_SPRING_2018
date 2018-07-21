@@ -73,8 +73,8 @@
 
 
        <!--Google Sign/Register In Button-->
-        <div name="" type="submit" name="" class="g-signin2" href="/register" data-onsuccess="onSignIn" style="margin-left: 0px; width: 200%">
-        </div>
+
+       <div name="" type="submit" class="g-signin2" href="/register"    data-onsuccess="onSignIn" id="gSign" style="margin-left: 0px; margin-top: 15px; width: 200%; border-radius: 15px;"></div>
 
     <% if(request.getAttribute("error") != null){ %>
         <h2 style="color:red"><%= request.getAttribute("error") %></h2>

@@ -93,13 +93,15 @@
 
       <!--Google Sign In Button-->
       <a href="/login">
-        <div name="" type="submit" name="" class="g-signin2" href="/login" data-onsuccess="onSignIn" style="margin-left: 0px; width: 200%">
+        <div name="" type="submit" name="" class="g-signin2" href="/login" data-onsuccess="onSignIn" style="margin-left: 0px;
+          margin-top: 15px; 
+          width: 200%; border-radius: 15px;">
         </div>
       </a>
 
     </form>
 
-    <p style="font-family: Roboto; margin-top:10px; font-size: 20px;">New users can register <a href="/register">here</a>.</p>
+    <p style="font-family: Roboto; margin-top:10px; font-size: 20px;">Creat and account with us <a href="/register">here!</a>.</p>
 
     <div style="height: 10px;"></div>
 
