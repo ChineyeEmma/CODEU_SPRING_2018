@@ -59,7 +59,7 @@
       <% } else{ %>
       <a href="/login"><i class="fas fa-sign-in-alt"></i></button></a>
       <% } %>
-      <a href="/about.jsp"><i class="fas fa-user"></i></a>
+      <a onclick="signOut()" href="/about.jsp"><i class="fas fa-user"></i></a>
     </span>
 
   </nav>

@@ -1,7 +1,8 @@
 
 
 //global profile photo
-var profilePic = "";
+var profilePic;
+var profile;
 
 /*The function called when the user signs in 
 with thier Google account*/
@@ -9,7 +10,7 @@ function onSignIn(googleUser)
 {
 
 	/*retrieving their basic profile information*/
-	var profile=googleUser.getBasicProfile();
+	profile = googleUser.getBasicProfile();
 
 	/*the identifier for thier profile*/
 	var idToken=profile.id_token;
@@ -22,6 +23,7 @@ function onSignIn(googleUser)
 
 	$("#username").val(newUsername);
 	//lengthened the password to make it "appear" more secure
+	//TODO: make it random
 	$("#password").val("5JONJONJONJONJON5"); 
 
 	$("#regForm").submit(); //submit the user credential form for registration
@@ -34,8 +36,13 @@ function onSignIn(googleUser)
 
 function setProfilePic(){
 
+	var profilePic = new Image(25,25);
+	profilePic.src = profile.getImageUrl();
+
 	$(".data").css("display","block");
-	$("#pic").attr('src', profile.getImageUrl());
+	$("#picChange").attr("src", profilePic.src);
+	$("#test").text("TESTINNNNNNNNG");
+
 
 }
 

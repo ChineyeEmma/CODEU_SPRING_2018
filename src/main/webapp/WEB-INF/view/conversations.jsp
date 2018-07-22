@@ -29,6 +29,12 @@
    <link rel="stylesheet" href="/css/main.css">
    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+   <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+   <script src="/js/script.js"></script>
 </head>
 <body>
 
@@ -48,17 +54,13 @@
   </nav>
 
 
-
-
-  <div id="container" style="padding-left: 10px">
+  <div id="container" style="margin-left: 20%;padding-left: 10px">
 
         <!--user profile photo-->
-        <div class="data" onload="setProfilePic">
-            <img id="pic" style="width: 200px; height: 100px;"/>
+        <div class="data" src="https://pbs.twimg.com/profile_images/888907252702347265/g2JwwLDR_400x400.jpg">
+            <img id="picChange"  onload="setProfilePic()" style="width: 100px; height: 100px; border-radius: 50%"/>
+            <p id="test"></p>
         </div>
-
-
-
 
 
     <% if(request.getAttribute("error") != null){ %>
@@ -103,7 +105,7 @@
 
       for(Conversation conversation : conversations){
     %>
-      <li><a id="convo-item" style=" font-style: italic; border-radius: 20px; height: 60px; width: 60%; font-size: 40px; text-align: center; display:block; color:white; padding: 10px; text-decoration: none; margin-top: 20px; background-color: #d62d20;" href="/chat/<%= conversation.getTitle() %>">
+      <li><a id="convo-item" style=" font-style: italic; border-radius: 20px; height: 60px; width: 60%; font-size: 40px; text-align: center; display:block; color:white; padding: 20px; text-decoration: none; margin-top: 20px; background-color: #d62d20;" href="/chat/<%= conversation.getTitle() %>">
 
         <%= conversation.getTitle() + " Started By: " + userS.getUser(conversation.getOwnerId()).getName()%></a>
 

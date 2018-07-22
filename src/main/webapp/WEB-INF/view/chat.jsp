@@ -30,6 +30,12 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
    <link rel="stylesheet" href="/css/main.css">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
+ <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+   <script src="/js/script.js"></script>
+   
   <style>
     #chat {
       background-color: white;
