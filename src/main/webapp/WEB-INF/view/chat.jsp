@@ -83,12 +83,21 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
         String author = UserStore.getInstance()
           .getUser(message.getAuthorId()).getName();
     %>
-      <li style="padding-bottom: 10px; margin-right: 20px; padding-left: 10px; border-radius: 20px; margin-top: 30px; width: 95% ; background-color: #8e2d2b;font-size:1.5em;padding-top: 10px;""><strong><%= author %>:</strong> <em><%= message.getContent() %></em></li>
 
+      <!--messages in the chat-->
+      <!--if it is author message align right, else align left-->
 
-    <%
-      }
-    %>
+              <%if(author.equals(request.getSession().getAttribute("user"))) { %>
+
+                  <li style="text-align: right; padding-bottom: 10px; margin-left: 15%; padding-right: 10px; border-radius: 20px; margin-top: 30px; width: 80% ; background-color: #8e2d2b;font-size:1.5em;padding-top: 10px;"><strong><%= author %>:</strong> <em><%= message.getContent() %></em></li>
+           <% } else { %>
+
+                <!--not logged in user, align left-->
+                <li style="text-align: left; padding-bottom: 10px; margin-right: 15%; padding-left: 10px; border-radius: 20px; margin-top: 30px; width: 80% ; background-color: #8e2d2b;font-size:1.5em;padding-top: 10px;"><strong><%= author %>:</strong> <em><%= message.getContent() %></em></li>
+            <% } 
+
+      }%>
+
       </ul>
     </div>
 
@@ -100,7 +109,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
         <br/>
 
 
-        <button style="font-size: 25px; margin-bottom: 10px; color: white; border-width: 5px; border-color: #a94442; background-color: #d62d20; border-radius: 20px; width: 25%; height: 50px; padding:10px;  " type="submit">Send</button>
+        <button style="font-size: 25px; margin-top: 10px; margin-bottom: 10px; color: white; border-width: 5px; border-color: #a94442; background-color: #d62d20; border-radius: 20px; width: 35%; height: 50px; padding:10px;" type="submit">Send</button>
 
     </form>
     <% } else { %>

@@ -41,7 +41,7 @@
   <nav>
     <a id="navTitle" href="/">Yada-Yada</a>
 
-    <span class="navicons" style="text-align: right; margin-left:50%">
+    <span class="navicons" style="text-align: right; margin-left:10%">
       <a href="/conversations"><i class="fas fa-comments"></i></a>
       <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
@@ -54,7 +54,7 @@
   </nav>
 
 
-  <div id="container" style="margin-left: 20%;padding-left: 10px">
+  <div id="container" style="margin-left: 1%;padding-left: 10px">
 
         <!--user profile photo-->
         <div class="data" src="https://pbs.twimg.com/profile_images/888907252702347265/g2JwwLDR_400x400.jpg">
