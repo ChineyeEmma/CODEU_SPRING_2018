@@ -15,6 +15,12 @@
 --%>
 <%@ page import="java.util.List" %>
 <%@ page import="codeu.model.data.Conversation" %>
+<%@ page import="codeu.model.data.User" %>
+<%@ page import="codeu.model.data.Message" %>
+<%@ page import="codeu.model.store.basic.UserStore" %>
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -41,26 +47,33 @@
 
   </nav>
 
-  <div id="container">
+
+
+
+  <div id="container" style="padding-left: 10px">
 
         <!--user profile photo-->
         <div class="data" onload="setProfilePic">
             <img id="pic" style="width: 200px; height: 100px;"/>
         </div>
 
+
+
+
+
     <% if(request.getAttribute("error") != null){ %>
         <h2 style="color:red"><%= request.getAttribute("error") %></h2>
     <% } %>
 
     <% if(request.getSession().getAttribute("user") != null){ %>
-      <h1>New Conversation</h1>
+      <h1 style="color: #a94442; font-size: 30px;">New Conversation</h1>
       <form action="/conversations" method="POST">
-          <div class="form-group">
-            <label class="form-control-label">Title:</label>
-          <input type="text" name="conversationTitle">
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label style="font-size:30px; color:#a94442" class="form-control-label">title:</label>
+          <input type="text" name="conversationTitle" style="width: 250px; height:40px; border-radius: 20px; font-size:25px; padding-left: 10px; color: #a94442">
         </div>
 
-        <button type="submit">Create</button>
+        <button type="submit" style="border-radius: 20px; color:white; font-size: 25px; margin-left: 70px;height: 50px;width: 260px;background-color: #d62d20">let's chat!</button>
       </form>
 
       <hr/>
@@ -73,6 +86,9 @@
 
 <div>
     <%
+
+    UserStore userS = UserStore.getInstance(); //get user store
+
     List<Conversation> conversations =
       (List<Conversation>) request.getAttribute("conversations");
     if(conversations == null || conversations.isEmpty()){
@@ -87,9 +103,9 @@
 
       for(Conversation conversation : conversations){
     %>
-      <li><a id="convo-item" style=" font-style: italic; border-radius: 20px; height: 60px; width: 60%; font-size: 50px; text-align: center; display:block; color:white; paddiing: 8px 16px; text-decoration: none; margin-top: 15px; background-color: #d62d20;" href="/chat/<%= conversation.getTitle() %>">
+      <li><a id="convo-item" style=" font-style: italic; border-radius: 20px; height: 60px; width: 60%; font-size: 40px; text-align: center; display:block; color:white; padding: 10px; text-decoration: none; margin-top: 20px; background-color: #d62d20;" href="/chat/<%= conversation.getTitle() %>">
 
-        <%= conversation.getTitle() + " Started By: " + UserStore.getInstance().getUser(conversation.getOwnerID()).getName();%></a>
+        <%= conversation.getTitle() + " Started By: " + userS.getUser(conversation.getOwnerId()).getName()%></a>
 
       </li>
     <%

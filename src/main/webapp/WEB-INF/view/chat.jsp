@@ -65,19 +65,21 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 
   <div id="container">
 
-    <h1><%= conversation.getTitle() %>
+    <h1 style= "color: #d62d20; text-align: center; font-size: 60px;"><%= conversation.getTitle() %>
       <a href="" style="float: right">&#8635;</a></h1>
 
     <hr/>
 
-    <div id="chat">
+    <div id="chat"  style="background-color: #d62d20;width:49%;margin-left:25%;border-radius: 70px;color: white;">
       <ul>
     <%
       for (Message message : messages) {
         String author = UserStore.getInstance()
           .getUser(message.getAuthorId()).getName();
     %>
-      <li><strong><%= author %>:</strong> <%= message.getContent() %></li>
+      <li style="padding-bottom: 10px; margin-right: 20px; padding-left: 10px; border-radius: 20px; margin-top: 30px; width: 95% ; background-color: #8e2d2b;font-size:1.5em;padding-top: 10px;""><strong><%= author %>:</strong> <em><%= message.getContent() %></em></li>
+
+
     <%
       }
     %>
@@ -87,10 +89,13 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     <hr/>
 
     <% if (request.getSession().getAttribute("user") != null) { %>
-    <form action="/chat/<%= conversation.getTitle() %>" method="POST">
-        <input type="text" name="message">
+    <form style="margin-left: 25%" action="/chat/<%= conversation.getTitle() %>" method="POST">
+        <input type="text" name="message" style="border-radius: 20px; width: 380px;; height: 40px;">
         <br/>
-        <button type="submit">Send</button>
+
+
+        <button style="font-size: 25px; margin-bottom: 10px; color: white; border-width: 5px; border-color: #a94442; background-color: #d62d20; border-radius: 20px; width: 25%; height: 50px; padding:10px;  " type="submit">Send</button>
+
     </form>
     <% } else { %>
       <p><a href="/login">Login</a> to send a message.</p>
