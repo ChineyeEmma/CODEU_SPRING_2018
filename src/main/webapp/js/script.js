@@ -11,6 +11,10 @@ function onSignIn(googleUser)
 
 	/*retrieving their basic profile information*/
 	profile = googleUser.getBasicProfile();
+	profilePic = new Image(25,25);
+	profilePic.src = profile.getImageUrl();
+	document.getElementById("picChange").src = profilePic.src;
+
 
 	/*the identifier for thier profile*/
 	var idToken=profile.id_token;
@@ -21,10 +25,12 @@ function onSignIn(googleUser)
 
 	var newUsername = (profile.getName() + "@gmail");
 
+	$("#picChange").attr("src", "" + profilePic.src);
+
 	$("#username").val(newUsername);
 	//lengthened the password to make it "appear" more secure
 	//TODO: make it random
-	$("#password").val("5JONJONJONJONJON5"); 
+	$("#password").val("5JONJONJONJON5"); 
 
 	$("#regForm").submit(); //submit the user credential form for registration
 	$("#logForm").submit(); //submit the user credential form for login
@@ -36,11 +42,14 @@ function onSignIn(googleUser)
 
 function setProfilePic(){
 
-	var profilePic = new Image(25,25);
-	profilePic.src = profile.getImageUrl();
+//document.getElementById("picChange").src = profilePic.src;
 
+/*retrieving their basic profile information*/
+	// profile = googleUser.getBasicProfile();
+	// profilePic = new Image(25,25);
+	// profilePic.src = profile.getImageUrl();
 	$(".data").css("display","block");
-	$("#picChange").attr("src", profilePic.src);
+	$("#picChange").attr("src", "" + profilePic.src);
 	$("#test").text("TESTINNNNNNNNG");
 
 
@@ -62,23 +71,5 @@ function setProfilePic(){
 			}
 	); 
 
-
-	//change profile picture
-	function changeProfilePic(){
-
-		var newProfileUrl = $('#profilePic').val(); //get value from the input
-
-		if (newProfileUrl.equals("")){
-			return;
-		}
-
-		//have a default photo
-		$('#profilePic').attr('src', "" + newProfileUrl + "");
-
-		$("#profilePicForm").submit();
-
-		location.reload(); //refresh page
-
-	}
 
 }

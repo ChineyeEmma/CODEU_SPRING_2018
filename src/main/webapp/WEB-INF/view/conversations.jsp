@@ -54,13 +54,12 @@
   </nav>
 
 
-  <div id="container" style="margin-left: 1%;padding-left: 10px">
+       <!--user profile photo-->
+    <div class="data" style="margin-left: 60px; margin-top: 10px;">
+            <img id="picChange" src="https://pbs.twimg.com/profile_images/888907252702347265/g2JwwLDR_400x400.jpg" style="width: 200px; height: 200px; border-radius: 50%; margin-left:40%"/>
+    <div id="container" style="margin-left: 1%;padding-left: 10px">
 
-        <!--user profile photo-->
-        <div class="data" src="https://pbs.twimg.com/profile_images/888907252702347265/g2JwwLDR_400x400.jpg">
-            <img id="picChange"  onload="setProfilePic()" style="width: 100px; height: 100px; border-radius: 50%"/>
-            <p id="test"></p>
-        </div>
+ 
 
 
     <% if(request.getAttribute("error") != null){ %>
@@ -75,18 +74,18 @@
           <input type="text" name="conversationTitle" style="width: 250px; height:40px; border-radius: 20px; font-size:25px; padding-left: 10px; color: #a94442">
         </div>
 
-        <button type="submit" style="border-radius: 20px; color:white; font-size: 25px; margin-left: 70px;height: 50px;width: 260px;background-color: #d62d20">let's chat!</button>
+        <button type="submit" style="border-radius: 20px; color:white; font-size: 25px; margin-left: 65px;height: 50px;width: 260px;background-color: #d62d20">let's chat!</button>
       </form>
 
       <hr/>
     <% } %>
 
    
-    <p style="font-size: 60px; margin-left:20px; font-weight: bold; color:#a94442 "><%= request.getSession().getAttribute("user") %>'s Conversations</p>
+    <p style="text-align:center; font-size: 60px; margin-left:20px; font-weight: bold; color:#a94442 "><%= request.getSession().getAttribute("user") %>'s Conversations</p>
 
 
 
-<div>
+<div style="margin-left: 30%;">
     <%
 
     UserStore userS = UserStore.getInstance(); //get user store
@@ -105,7 +104,7 @@
 
       for(Conversation conversation : conversations){
     %>
-      <li><a id="convo-item" style=" font-style: italic; border-radius: 20px; height: 60px; width: 60%; font-size: 40px; text-align: center; display:block; color:white; padding: 20px; text-decoration: none; margin-top: 20px; background-color: #d62d20;" href="/chat/<%= conversation.getTitle() %>">
+      <li><a id="convo-item" style=" font-style: italic; border-radius: 20px; height: 60px; width: 60%; font-size: 20px; text-align: center; display:block; color:white; padding: 20px; text-decoration: none; margin-top: 20px; background-color: #d62d20;" href="/chat/<%= conversation.getTitle() %>">
 
         <%= conversation.getTitle() + " Started By: " + userS.getUser(conversation.getOwnerId()).getName()%></a>
 

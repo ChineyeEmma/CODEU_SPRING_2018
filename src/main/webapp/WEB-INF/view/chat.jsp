@@ -71,12 +71,18 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 
   <div id="container">
 
+       <!--user profile photo-->
+    <div class="data" style="margin-left: 60px; margin-top: 10px;">
+            <img id="picChange" src="https://pbs.twimg.com/profile_images/888907252702347265/g2JwwLDR_400x400.jpg" style="width: 200px; height: 200px; border-radius: 50%; margin-left:40%;"/>
+    <div id="container" style="margin-left: 1%;padding-left: 10px">
+
+
     <h1 style= "color: #d62d20; text-align: center; font-size: 60px;"><%= conversation.getTitle() %>
       <a href="" style="float: right">&#8635;</a></h1>
 
     <hr/>
 
-    <div id="chat"  style="background-color: #d62d20;width:49%;margin-left:25%;border-radius: 70px;color: white;">
+    <div id="chat" style="background-color: #d62d20;width:49%;margin-left:25%;border-radius: 70px;color: white;">
       <ul>
     <%
       for (Message message : messages) {

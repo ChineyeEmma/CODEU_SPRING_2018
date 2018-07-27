@@ -69,6 +69,7 @@ public class LoginServlet extends HttpServlet {
     String username = request.getParameter("username");
     String password = request.getParameter("password");
 
+
     if (!userStore.isUserRegistered(username)) {
       request.setAttribute("error", "That username was not found.");
       request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
@@ -77,11 +78,13 @@ public class LoginServlet extends HttpServlet {
 
     User user = userStore.getUser(username);
 
-    if (!BCrypt.checkpw(password, user.getPasswordHash())) {
-      request.setAttribute("error", "Please enter a correct password.");
-      request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
-      return;
-    }
+    
+  if (!BCrypt.checkpw(password, user.getPasswordHash())) {
+     request.setAttribute("error", "Please enter a correct password.");
+     request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
+    return;
+  }
+  
 
     request.getSession().setAttribute("user", username);
     response.sendRedirect("/conversations");
