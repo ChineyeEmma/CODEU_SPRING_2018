@@ -16,34 +16,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Team4 Chat App</title>
+  <title>Team Four Chat App</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 <body>
   <nav>
-    <a id="navTitle" href="/">Team4 Chat App</a>
-    <a href="/conversations">Conversations</a>
-    <% if(request.getSession().getAttribute("user") != null){ %>
+    <a id="navTitle" href="/">Yada-Yada</a>
+
+    <span class="navicons" style="text-align: right; margin-left:60%">
+      <a href="/conversations"><i class="fas fa-comments"></i></a>
+      <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-    <% } else{ %>
-      <a href="/login">Login</a>
-    <% } %>
-    <a href="/about.jsp">About</a>
+      <% } else{ %>
+      <a href="/login"><i class="fas fa-sign-in-alt"></i></button></a>
+      <% } %>
+      <a href="/about.jsp"><i class="fas fa-user"></i></a>
+    </span>
+
   </nav>
 
-  <div id="container">
-    <div
-      style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
+  <div id="container" style="margin: auto; text-align:center">
 
-      <h1>Team4 Chat App</h1>
-      <h2>Welcome!</h2>
+   <p style="font-size: 50px; margin-left:40px">Welcome to Yada-Yada, Chat Away!</p>
+
+    <div style="width:100%; margin-top: 50px;">
 
       <ul>
-        <li><a href="/login">Login</a> to get started.</li>
-        <li>Go to the <a href="/conversations">conversations</a> page to
-            create or join a conversation.</li>
-        <li>View the <a href="/about.jsp">about</a> page to learn more about the
-            project.</li>
+        <li>
+            <a href="/login"><button class="linkButtons homeButtons"><i title="Login" class="fas fa-sign-in-alt"></i></button></a>
+        </li>
+
+        <li>
+            <a href="/conversations"><button class="linkButtons homeButtons"><i title="Convos"class="fas fa-comments"></i></button></a>
+        </li>
+
+        <li>
+            <a href="/about.jsp"><button class="linkButtons homeButtons"><i title="About"class="fas fa-user"></i></button></a>
+        </li>
+
+        <li>
+            <a href="/adminlogin"><button class="linkButtons homeButtons"><i title="Admin"class="fas fa-lock"></i></button></a>
+        </li>
+            
       </ul>
     </div>
   </div>

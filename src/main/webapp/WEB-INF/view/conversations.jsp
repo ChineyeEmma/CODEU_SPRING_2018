@@ -20,19 +20,25 @@
 <html>
 <head>
   <title>Conversations</title>
-  <link rel="stylesheet" href="/css/main.css">
+   <link rel="stylesheet" href="/css/main.css">
+   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 <body>
 
   <nav>
-    <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
-    <% if(request.getSession().getAttribute("user") != null){ %>
+    <a id="navTitle" href="/">Yada-Yada</a>
+
+    <span class="navicons" style="text-align: right; margin-left:50%">
+      <a href="/conversations"><i class="fas fa-comments"></i></a>
+      <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-    <% } else{ %>
-      <a href="/login">Login</a>
-    <% } %>
-    <a href="/about.jsp">About</a>
+      <% } else{ %>
+      <a href="/login"><i class="fas fa-sign-in-alt"></i></button></a>
+      <% } %>
+      <a href="/about.jsp"><i class="fas fa-user"></i></a>
+    </span>
+
   </nav>
 
   <div id="container">
@@ -55,28 +61,31 @@
       <hr/>
     <% } %>
 
-    <h1>Conversations</h1>
+    <p style="font-size: 60px; margin-left:20px;"><%= request.getSession().getAttribute("user") %>'s Conversations</p>
 
+<div>
     <%
     List<Conversation> conversations =
       (List<Conversation>) request.getAttribute("conversations");
     if(conversations == null || conversations.isEmpty()){
     %>
-      <p>Create a conversation to get started.</p>
+      <p>Create a convo!</p>
     <%
     }
     else{
     %>
       <ul class="mdl-list">
     <%
+
       for(Conversation conversation : conversations){
     %>
-      <li><a href="/chat/<%= conversation.getTitle() %>">
+      <li><a id="convo-item" style="width: 80%; font-size: 30px; text-align: center; display:block; color:white; paddiing: 8px 16px; text-decoration: none; margin-top: 15px; background-color: #d62d20;" href="/chat/<%= conversation.getTitle() %>">
         <%= conversation.getTitle() %></a></li>
     <%
       }
     %>
       </ul>
+    </div>
     <%
     }
     %>
