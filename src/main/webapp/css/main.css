@@ -19,8 +19,7 @@ body {
   line-height: 1.6;
   font-size: 18px;
   line-height: 1.6;
-  color: black;
-  background-color: #fcfcfc;
+ 
 }
 
 h1 h2{
@@ -114,16 +113,59 @@ ul {
 
 }
 
+
 #logButton, #regButton{
 
-  width: 200px; 
-  height: 40px; 
-  background-color:white; 
-  margin-bottom:10px; font-size:20px;
+width: 400px;
+
+height: 60px;
+
+background-color: #a94442;
+
+margin-bottom:10px;
+
+font-size:40px;
+
+border-style: solid;
+
+border-width: 2px;
+
+border-radius: 15px;
+
+color: white;
+
+
+ 
+}
+
+#logButton:hover{
+
+  box-shadow: 0 4px 4px 0 rgba(111, 172, 238, 0.56),0 17px 50px 0 rgba(102, 179, 211, 0.44);
 
 }
 
 #convoItem:hover{
+
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 
+  50px 0 rgba(0,0,0,0.19);
+}
+
+
+#password, #username{
+
+  border-radius: 15px;
+  width: 400px;
+  height: 60px;
+  font-size: 30px;
+}
+
+#pic {
+
+margin-left: 40px;
+
+}
+
+a:hover{
 
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 
   50px 0 rgba(0,0,0,0.19);

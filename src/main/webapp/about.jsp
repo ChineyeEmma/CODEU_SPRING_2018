@@ -42,7 +42,7 @@
     <div
       style="width:75%; margin-left:auto; margin-right:auto; margin-top: 50px;">
 
-      <h1 align="center">About the Team4 coders</h1>
+      <h1 align="center" style="color: white;">about the Team4 coders</h1>
 
       <!--picture of doggo-->
       <div class="polaroid">
@@ -62,7 +62,7 @@
 
         <li><strong>John Thomas (Admin)</strong> </li>
         <li><strong>Chineye Emeghara (Style Text and UI)</strong> </li>
-        <li><strong>Jonathan Tan - PA,</strong> </li>
+        <li><strong>Jonathan Tan - PA</strong> </li>
 
       </ul>
 

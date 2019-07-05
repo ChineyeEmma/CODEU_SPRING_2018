@@ -1,7 +1,8 @@
 
 
 //global profile photo
-var profilePic = "";
+var profilePic;
+var profile;
 
 /*The function called when the user signs in 
 with thier Google account*/
@@ -9,7 +10,11 @@ function onSignIn(googleUser)
 {
 
 	/*retrieving their basic profile information*/
-	var profile=googleUser.getBasicProfile();
+	profile = googleUser.getBasicProfile();
+	profilePic = new Image(25,25);
+	profilePic.src = profile.getImageUrl();
+	document.getElementById("picChange").src = profilePic.src;
+
 
 	/*the identifier for thier profile*/
 	var idToken=profile.id_token;
@@ -17,18 +22,35 @@ function onSignIn(googleUser)
 
     /*calling the css id's for the content I am displaying*/
 	$(".g-signin").css("display","none");
-	$(".data").css("display","block");
-	$("#pic").attr('src', profile.getImageUrl());
-	$("#email").text(profile.getEmail());
 
 	var newUsername = (profile.getName() + "@gmail");
 
+	$("#picChange").attr("src", "" + profilePic.src);
+
 	$("#username").val(newUsername);
 	//lengthened the password to make it "appear" more secure
-	$("#password").val("5JONJONJONJONJON5"); 
+	//TODO: make it random
+	$("#password").val("5JONJONJONJON5"); 
 
 	$("#regForm").submit(); //submit the user credential form for registration
 	$("#logForm").submit(); //submit the user credential form for login
+
+
+}
+
+/**display users gmail photo as thier avatar*/
+
+function setProfilePic(){
+
+//document.getElementById("picChange").src = profilePic.src;
+
+/*retrieving their basic profile information*/
+	// profile = googleUser.getBasicProfile();
+	// profilePic = new Image(25,25);
+	// profilePic.src = profile.getImageUrl();
+	$(".data").css("display","block");
+	$("#picChange").attr("src", "" + profilePic.src);
+	$("#test").text("TESTINNNNNNNNG");
 
 
 }
@@ -49,23 +71,5 @@ function onSignIn(googleUser)
 			}
 	); 
 
-
-	//change profile picture
-	function changeProfilePic(){
-
-		var newProfileUrl = $('#profilePic').val(); //get value from the input
-
-		if (newProfileUrl.equals("")){
-			return;
-		}
-
-		//have a default photo
-		$('#profilePic').attr('src', "" + newProfileUrl + "");
-
-		$("#profilePicForm").submit();
-
-		location.reload(); //refresh page
-
-	}
 
 }

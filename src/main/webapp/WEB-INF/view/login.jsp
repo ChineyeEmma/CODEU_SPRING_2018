@@ -48,19 +48,18 @@
     </style>
 
 </head>
-<body style="font-family:'Roboto Light', sans-serif">
+<body style="color: white; background-color: #a94442;font-family:'Roboto Light', sans-serif">
 
     <nav>
     <a id="navTitle" href="/">Yada-Yada</a>
 
     <span class="navicons" style="text-align: right; margin-left:60%">
-      <a href="/conversations"><i class="fas fa-comments"></i></a>
       <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
       <% } else{ %>
       <a href="/login"><i class="fas fa-sign-in-alt"></i></button></a>
       <% } %>
-      <a href="/about.jsp"><i class="fas fa-user"></i></a>
+      <a onclick="signOut()" href="/about.jsp"><i class="fas fa-user"></i></a>
     </span>
 
   </nav>
@@ -69,7 +68,7 @@
 
     <div id="logCon" style="margin-left: 40%">
 
-    <span style="font-size: 60px;">Login</span>
+    <span style="font-size: 60px;">login</span>
 
     <% if(request.getAttribute("error") != null){ %>
         <h2 style="color:red"><%= request.getAttribute("error") %></h2>
@@ -78,28 +77,30 @@
     <!--traditional sign in form-->
     <form action="/login" method="POST" id="logForm">
 
-      <label for="username" style="font-family:Roboto; margin-top: 30px; font-size:20px; ">Username: </label>
+      <label for="username" style="font-family:Roboto; margin-top: 30px; font-size:40px; ">username: </label>
       <br/>
-      <input type="text" name="username" id="username" autocomplete="username email" style="width: 200px; height: 40px;">
+      <input type="text" name="username" id="username" autocomplete="username email">
       <br/>
-      <label for="password" style="margin-top: 20px;font-family:Roboto; font-size: 20px;" autocomplete="password">Password: </label>
+      <label for="password" style="margin-top: 20px;font-family:Roboto; font-size: 40px;" autocomplete="password">password: </label>
       <br/>
-      <input type="password" name="password" id="password" style="width: 200px; height: 40px;">
+      <input type="password" name="password" id="password">
       <br/><br/>
 
       <div>
-          <button type="submit" id="logButton">Login</button>
+          <button type="submit" id="logButton">login</button>
       </div>
 
       <!--Google Sign In Button-->
       <a href="/login">
-        <div name="" type="submit" name="" class="g-signin2" href="/login" data-onsuccess="onSignIn" style="margin-left: 0px; width: 200%">
+        <div name="" type="submit" name="" class="g-signin2" href="/login" data-onsuccess="onSignIn" style="margin-left: 0px;
+          margin-top: 15px; 
+          width: 200%; border-radius: 15px;">
         </div>
       </a>
 
     </form>
 
-    <p style="font-family: Roboto; margin-top:10px; font-size: 20px;">New users can register <a href="/register">here</a>.</p>
+    <p style="font-size: 40px; font-family: Roboto; margin-top:10px; font-size: 20px;">Join <a href="/register">here!</a> to chat!</p>
 
     <div style="height: 10px;"></div>
 
